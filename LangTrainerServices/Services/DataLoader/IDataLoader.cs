@@ -3,8 +3,8 @@ using LangTrainerEntity.Entities.Lang;
 
 namespace LangTrainerServices.Model.DataFillers
 {
-    internal interface IDataFiller
+    internal interface IDataLoader
     {
-        Expression GetData(string token);
+        Task<Expression> GetData(string token);
     }
 }

@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerAPI", "LangTrain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerEntity", "LangTrainerEntity\LangTrainerEntity.csproj", "{898BA540-A923-411C-9C87-246185554EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangTrainerDAL", "LangTrainerDAL\LangTrainerDAL.csproj", "{F7D9FADA-961C-4DCC-9D6D-690D95A5FC2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerDAL", "LangTrainerDAL\LangTrainerDAL.csproj", "{F7D9FADA-961C-4DCC-9D6D-690D95A5FC2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangTrainerServices", "LangTrainerServices\LangTrainerServices.csproj", "{E03D7B33-D058-4F6C-BE9F-161FB7180B2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerServices", "LangTrainerServices\LangTrainerServices.csproj", "{E03D7B33-D058-4F6C-BE9F-161FB7180B2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangTrainerClientModel", "LangTrainerClientModel\LangTrainerClientModel.csproj", "{AFA58008-9A99-4313-84C2-3BD27568705D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E03D7B33-D058-4F6C-BE9F-161FB7180B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E03D7B33-D058-4F6C-BE9F-161FB7180B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E03D7B33-D058-4F6C-BE9F-161FB7180B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFA58008-9A99-4313-84C2-3BD27568705D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA58008-9A99-4313-84C2-3BD27568705D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA58008-9A99-4313-84C2-3BD27568705D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA58008-9A99-4313-84C2-3BD27568705D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

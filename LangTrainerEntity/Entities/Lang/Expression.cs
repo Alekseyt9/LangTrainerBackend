@@ -6,11 +6,11 @@
 
         public string Text { get; set; }
 
-        public ICollection<Translate> Translates { get; set; }
+        public ICollection<Translate> Translates { get; set; } = new HashSet<Translate>();
 
-        public ICollection<Sample> Samples { get; set; }
+        public ICollection<Sample> Samples { get; set; } = new List<Sample>();
 
-        public ICollection<Sound> Sounds { get; set; }
+        public ICollection<Sound> Sounds { get; set; } = new List<Sound>();
 
         public Guid LanguageId { get; set; }
 

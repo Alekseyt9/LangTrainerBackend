@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\LangTrainerClientModel\LangTrainerClientModel.csproj" />
+    <ProjectReference Include="..\LangTrainerServices\LangTrainerServices.csproj" />
   </ItemGroup>
 
 </Project>

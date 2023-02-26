@@ -10,7 +10,7 @@ namespace LangTrainerTest.DataFillers
         [Fact]
         public void TestFull()
         {
-            var f = new CambridgeEnglishFiller();
+            var f = new CambridgeEnglishLoader();
             var res = f.GetData("face");
 
             Assert.NotNull(res);

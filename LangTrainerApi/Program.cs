@@ -1,4 +1,6 @@
 
+using LangTrainerServies;
+
 namespace EngTrainerApi
 {
     public class Program
@@ -12,6 +14,8 @@ namespace EngTrainerApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.ConfigureLangServices();
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -23,6 +27,7 @@ namespace EngTrainerApi
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
+
             app.Run();
         }
 

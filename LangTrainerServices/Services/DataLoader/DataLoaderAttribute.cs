@@ -1,9 +1,9 @@
 ﻿
 namespace LangTrainerServices.Model.DataFillers
 {
-    public class DataFillerAttribute : Attribute
+    public class DataLoaderAttribute : Attribute
     {
-        public DataFillerAttribute(string desc, string lang)
+        public DataLoaderAttribute(string desc, string lang)
         {
             Description = desc;
             Language = lang;
