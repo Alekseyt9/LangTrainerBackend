@@ -8,10 +8,10 @@ namespace LangTrainerTest.DataFillers
     public class CambridgeEnglishFillerTest
     {
         [Fact]
-        public void TestFull()
+        public async Task TestFull()
         {
             var f = new CambridgeEnglishLoader();
-            var res = f.GetData("face");
+            var res = await f.GetData("face");
 
             Assert.NotNull(res);
         }

@@ -1,4 +1,5 @@
 ﻿
+using System.Text;
 using HtmlAgilityPack;
 using LangTrainerEntity.Entities.Lang;
 using LangTrainerServices.Helpers;
@@ -11,29 +12,78 @@ namespace LangTrainerServices.Impl.DataFillers
     {
         public async Task<Expression> GetData(string token)
         {
-            var res = new Expression();
+            var expr = new Expression()
+            {
+                Text = token,
+                Language = new Language()
+                {
+                    Name = "english"
+                }
+            };
 
             var web = new HtmlWeb();
-            var doc = web.Load($"https://dictionary.cambridge.org/dictionary/english-italian/{token}");
+            var doc = web.Load($"https://dictionary.cambridge.org/dictionary/english/{token}");
 
+            LoadTranslates(doc, expr);
+            LoadSamples(doc, expr);
+            await LoadSounds(doc, expr);
+
+            return expr;
+        }
+
+        private void LoadSamples(HtmlDocument doc, Expression expr)
+        {
+            var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
+            var exsNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_b')]");
+            var exNodes = exsNode.SelectNodes(".//span[contains(@class, 'eg deg')]");
+            foreach (var child in exNodes)
+            {
+                expr.Samples.Add(new Sample()
+                {
+                    Text = GetText(child)
+                });
+            }
+        }
+
+        private void LoadTranslates(HtmlDocument doc, Expression expr)
+        {
+            var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
+            var defNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_d')]");
+            expr.Translates.Add(new Translate()
+            {
+                Language = new Language() { Name = "english" },
+                Text = GetText(defNode)
+            });
+        }
+
+        private string GetText(HtmlNode node)
+        {
+            var sb = new StringBuilder(node.InnerHtml.Length);
+            foreach (var child in node.ChildNodes)
+            {
+                sb.Append(child.InnerHtml);
+            }
+
+            return sb.ToString();
+        }
+
+        private async Task LoadSounds(HtmlDocument doc, Expression expr)
+        {
             var audioNode = doc.DocumentNode.SelectSingleNode("//audio[@id='audio2']/source[@type='audio/mpeg']");
             var url = audioNode.GetAttributeValue("src", null);
             var soundUrl = $"https://dictionary.cambridge.org{url}";
-
             using var client = new HttpClient();
             using var response = await client.GetAsync(soundUrl);
             using (var stream = await response.Content.ReadAsStreamAsync())
             {
                 var data = stream.ToBytes();
-                res.Sounds.Add(new Sound()
+                expr.Sounds.Add(new Sound()
                 {
                     Id = Guid.NewGuid(),
                     Data = data,
                     Hash = data.GetMd5Hash()
                 });
             }
-
-            return res;
         }
 
     }

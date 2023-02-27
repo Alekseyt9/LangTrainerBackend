@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerTest", "LangTrainerTest\LangTrainerTest.csproj", "{4BC5364B-B9BD-4007-8932-CF70AA78FFCA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerAPI", "LangTrainerApi\LangTrainerAPI.csproj", "{266DDA8A-5E21-4C79-BC74-1B48395F9E78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerEntity", "LangTrainerEntity\LangTrainerEntity.csproj", "{898BA540-A923-411C-9C87-246185554EB4}"
@@ -13,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerDAL", "LangTrain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerServices", "LangTrainerServices\LangTrainerServices.csproj", "{E03D7B33-D058-4F6C-BE9F-161FB7180B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangTrainerClientModel", "LangTrainerClientModel\LangTrainerClientModel.csproj", "{AFA58008-9A99-4313-84C2-3BD27568705D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerClientModel", "LangTrainerClientModel\LangTrainerClientModel.csproj", "{AFA58008-9A99-4313-84C2-3BD27568705D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4BC5364B-B9BD-4007-8932-CF70AA78FFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BC5364B-B9BD-4007-8932-CF70AA78FFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BC5364B-B9BD-4007-8932-CF70AA78FFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BC5364B-B9BD-4007-8932-CF70AA78FFCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{266DDA8A-5E21-4C79-BC74-1B48395F9E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{266DDA8A-5E21-4C79-BC74-1B48395F9E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{266DDA8A-5E21-4C79-BC74-1B48395F9E78}.Release|Any CPU.ActiveCfg = Release|Any CPU

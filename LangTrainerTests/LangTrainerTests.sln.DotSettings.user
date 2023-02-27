@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=75b111f5_002D9b8a_002D48cf_002D874b_002D6a94889f45c6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="LoadExpressionTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="D:\YandexDisk\YandexDisk\Workspace_git\LangTrainer\LangTrainerBackend\LangTrainerTest" Presentation="&amp;lt;LangTrainerTest&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b0a5f892_002Dc345_002D411e_002Dab83_002D6ed6f17195ab/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestFull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.DataFillers.CambridgeEnglishFillerTest.TestFull&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.APITest.LoadExpressionTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

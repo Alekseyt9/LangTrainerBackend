@@ -20,3 +20,7 @@
 /.vs/LangTrainerBackend/config
 /LangTrainerClientModel/bin/Debug/net7.0
 /LangTrainerClientModel/obj/Debug/net7.0
+/LangTrainerTests/.vs/LangTrainerTests/FileContentIndex
+/LangTrainerTests/.vs/LangTrainerTests/DesignTimeBuild/.dtbcache.v2
+/LangTrainerTests/.vs/LangTrainerTests/v17/.suo
+/LangTrainerTests/LangTrainerTests/obj

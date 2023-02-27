@@ -12,9 +12,11 @@
 
         public ICollection<Sound> Sounds { get; set; } = new List<Sound>();
 
+
         public Guid LanguageId { get; set; }
 
         public Language Language { get; set; }
+        
     }
 
 }
