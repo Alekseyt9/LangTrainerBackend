@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerServices", "Lang
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerClientModel", "LangTrainerClientModel\LangTrainerClientModel.csproj", "{AFA58008-9A99-4313-84C2-3BD27568705D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangTrainerCommon", "LangTrainerCommon\LangTrainerCommon.csproj", "{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AFA58008-9A99-4313-84C2-3BD27568705D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFA58008-9A99-4313-84C2-3BD27568705D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFA58008-9A99-4313-84C2-3BD27568705D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
