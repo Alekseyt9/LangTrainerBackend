@@ -31,7 +31,7 @@ namespace LangTrainerServices.Impl
                     if (attr != null)
                     {
                         m_Loaders.Add(
-                            new DataLoaderInfo() { Language = attr.Language },
+                            new DataLoaderInfo() { Languages = attr.Languages },
                             (IDataLoader)Activator.CreateInstance(type)
                         );
                     }
@@ -42,10 +42,10 @@ namespace LangTrainerServices.Impl
         public async Task<Expression> LoadExpressionData(TokenInfo info)
         {
             Expression target = null;
-            foreach (var key in m_Loaders.Keys.Where(x => x.Language == info.Language))
+            foreach (var key in m_Loaders.Keys.Where(x => x.Languages.Contains(info.Language)))
             {
                 var loader = m_Loaders[key];
-                var expr = await loader.GetData(info.Expression);
+                var expr = await loader.GetData(info.Expression, info.Language);
                 target = Union(target, expr);
             }
 

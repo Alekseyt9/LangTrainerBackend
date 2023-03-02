@@ -6,11 +6,17 @@ namespace LangTrainerServices.Model.DataFillers
         public DataLoaderAttribute(string desc, string lang)
         {
             Description = desc;
-            Language = lang;
+            Languages = new List<string>() { lang };
+        }
+
+        public DataLoaderAttribute(string desc, string[] langs)
+        {
+            Description = desc;
+            Languages = langs;
         }
 
         public string Description { get; set; }
 
-        public string Language { get; set; }
+        public ICollection<string> Languages { get; set; }
     }
 }

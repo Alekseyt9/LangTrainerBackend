@@ -4,13 +4,14 @@ using HtmlAgilityPack;
 using LangTrainerEntity.Entities.Lang;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LangTrainerServices.Impl.DataFillers
 {
     [DataLoader("dictionary.cambridge.org_eng", "english")]
     internal class CambridgeEnglishLoader : IDataLoader
     {
-        public async Task<Expression> GetData(string token)
+        public async Task<Expression> GetData(string token, string language)
         {
             var expr = new Expression()
             {
@@ -72,18 +73,15 @@ namespace LangTrainerServices.Impl.DataFillers
             var audioNode = doc.DocumentNode.SelectSingleNode("//audio[@id='audio2']/source[@type='audio/mpeg']");
             var url = audioNode.GetAttributeValue("src", null);
             var soundUrl = $"https://dictionary.cambridge.org{url}";
-            using var client = new HttpClient();
-            using var response = await client.GetAsync(soundUrl);
-            using (var stream = await response.Content.ReadAsStreamAsync())
+
+            var data = await HttpHelper.LoadFile(soundUrl);
+            expr.Sounds.Add(new Sound()
             {
-                var data = stream.ToBytes();
-                expr.Sounds.Add(new Sound()
-                {
-                    Id = Guid.NewGuid(),
-                    Data = data,
-                    Hash = data.GetMd5Hash()
-                });
-            }
+                Id = Guid.NewGuid(),
+                Data = data,
+                Hash = data.GetMd5Hash()
+            });
+
         }
 
     }
