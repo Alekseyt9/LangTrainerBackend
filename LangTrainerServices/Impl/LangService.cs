@@ -1,8 +1,8 @@
 ﻿
 using LangTrainerClientModel.Services;
 using LangTrainerEntity.Entities.Lang;
-using LangTrainerServices.Model;
 using LangTrainerServices.Services;
+using LangTrainerServices.Services.LangService;
 
 namespace LangTrainerServices.Impl
 {
@@ -25,5 +25,9 @@ namespace LangTrainerServices.Impl
             return _dataLoader.LoadExpressionData(info);
         }
 
+        public FindResult FindExpressions(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

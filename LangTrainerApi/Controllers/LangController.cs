@@ -1,7 +1,7 @@
 ﻿
 using LangTrainerClientModel.Services;
 using LangTrainerEntity.Entities.Lang;
-using LangTrainerServices.Model;
+using LangTrainerServices.Services.LangService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LangTrainerAPI.Controllers

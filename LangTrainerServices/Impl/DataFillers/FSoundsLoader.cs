@@ -1,5 +1,4 @@
 ﻿
-using System.Text;
 using HtmlAgilityPack;
 using LangTrainerCommon.Helpers;
 using LangTrainerEntity.Entities.Lang;
@@ -40,7 +39,9 @@ namespace LangTrainerServices.Impl.DataFillers
             foreach (var node in langsNode.ChildNodes)
             {
                 if (i > 2)
+                {
                     break;
+                }
 
                 var div = node.SelectSingleNode(".//div[contains(@class, 'play')]");
                 if (div == null)
@@ -50,13 +51,15 @@ namespace LangTrainerServices.Impl.DataFillers
 
                 var urlPart2 = GetUrlPart(attrVal);
                 var urlPart1 = "aHR0cHM6Ly9hdWRpbzEyLmZvcnZvLmNvbS9tcDMv".FromBase64();
+                var url = urlPart1 + urlPart2;
 
-                var data = await HttpHelper.LoadFile(urlPart1 + urlPart2);
+                var data = await HttpHelper.LoadFile(url);
                 expr.Sounds.Add(new Sound()
                 {
                     Id = Guid.NewGuid(),
                     Data = data,
-                    Hash = data.GetMd5Hash()
+                    Hash = data.GetMd5Hash(),
+                    Url = url
                 });
                 i++;
 
@@ -68,8 +71,6 @@ namespace LangTrainerServices.Impl.DataFillers
         {
             var str64 = val.Split(',')[1].Trim('\'');
             return str64.FromBase64();
-
-            // Play(2161229,'OTIxODY0MC8zNC85MjE4NjQwXzM0XzUxMzcubXAz'
         }
 
         private string GetUrl(string token, string language)

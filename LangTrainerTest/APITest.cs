@@ -23,12 +23,16 @@ namespace LangTrainerTest
 
             Assert.NotNull(expr);
             Assert.NotNull(expr.Text);
-            Assert.NotEmpty(expr.Samples);
+            
             Assert.NotEmpty(expr.Translates);
+            foreach (var tr in expr.Translates)
+            {
+                Assert.NotEmpty(tr.Samples);
+            }
+
             Assert.NotEmpty(expr.Sounds);
             Assert.NotNull(expr.Language);
         }
-
 
     }
 }

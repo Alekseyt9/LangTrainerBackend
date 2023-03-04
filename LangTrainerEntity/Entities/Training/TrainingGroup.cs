@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LangTrainerEntity.Entities.User
 {
-    public class ExpressionGroup
+    public class TrainingGroup
     {
     }
 }

@@ -26,35 +26,38 @@ namespace LangTrainerServices.Impl.DataFillers
             var doc = web.Load($"https://dictionary.cambridge.org/dictionary/english/{token}");
 
             LoadTranslates(doc, expr);
-            LoadSamples(doc, expr);
+            //LoadSamples(doc, expr);
             await LoadSounds(doc, expr);
 
             return expr;
-        }
-
-        private void LoadSamples(HtmlDocument doc, Expression expr)
-        {
-            var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
-            var exsNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_b')]");
-            var exNodes = exsNode.SelectNodes(".//span[contains(@class, 'eg deg')]");
-            foreach (var child in exNodes)
-            {
-                expr.Samples.Add(new Sample()
-                {
-                    Text = GetText(child)
-                });
-            }
         }
 
         private void LoadTranslates(HtmlDocument doc, Expression expr)
         {
             var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
             var defNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_d')]");
-            expr.Translates.Add(new Translate()
+            var tr = new Translate()
             {
                 Language = new Language() { Name = "english" },
                 Text = GetText(defNode)
-            });
+            };
+            expr.Translates.Add(tr);
+
+            LoadSamples(meanNode, tr);
+        }
+
+        private void LoadSamples(HtmlNode meanNode, Translate tr)
+        {
+            //var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
+            var exsNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_b')]");
+            var exNodes = exsNode.SelectNodes(".//span[contains(@class, 'eg deg')]");
+            foreach (var child in exNodes)
+            {
+                tr.Samples.Add(new Sample()
+                {
+                    Text = GetText(child)
+                });
+            }
         }
 
         private string GetText(HtmlNode node)
@@ -79,7 +82,8 @@ namespace LangTrainerServices.Impl.DataFillers
             {
                 Id = Guid.NewGuid(),
                 Data = data,
-                Hash = data.GetMd5Hash()
+                Hash = data.GetMd5Hash(),
+                Url = soundUrl
             });
 
         }

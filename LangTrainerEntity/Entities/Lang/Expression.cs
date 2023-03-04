@@ -8,8 +8,6 @@
 
         public ICollection<Translate> Translates { get; set; } = new HashSet<Translate>();
 
-        public ICollection<Sample> Samples { get; set; } = new List<Sample>();
-
         public ICollection<Sound> Sounds { get; set; } = new List<Sound>();
 
 

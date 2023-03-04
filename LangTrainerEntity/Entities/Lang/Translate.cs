@@ -13,6 +13,8 @@
 
         public Guid LanguageId { get; set; }
 
+        public ICollection<Sample> Samples { get; set; } = new List<Sample>();
+
         public object Clone()
         {
             return new Translate() { Text = Text, Language = Language, LanguageId = LanguageId };

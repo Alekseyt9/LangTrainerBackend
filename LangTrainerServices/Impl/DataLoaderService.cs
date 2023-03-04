@@ -2,6 +2,7 @@
 using System.Reflection;
 using LangTrainerClientModel.Services;
 using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Helpers;
 using LangTrainerServices.Model.DataFillers;
 using LangTrainerServices.Services;
 using LangTrainerServices.Services.DataLoader;
@@ -25,7 +26,6 @@ namespace LangTrainerServices.Impl
                          .SelectMany(x => x.GetTypes()))
             {
                 if (typeof(IDataLoader).IsAssignableFrom(type))
-                //if (type.IsInstanceOfType(typeof(IDataLoader)))
                 {
                     var attr = type.GetCustomAttribute<DataLoaderAttribute>();
                     if (attr != null)
@@ -46,48 +46,13 @@ namespace LangTrainerServices.Impl
             {
                 var loader = m_Loaders[key];
                 var expr = await loader.GetData(info.Expression, info.Language);
-                target = Union(target, expr);
+                target = target.Union(expr);
             }
 
             return target;
         }
 
-        public Expression Union(Expression target, Expression expr)
-        {
-            if (target == null)
-            {
-                return expr;
-            }
 
-            foreach (var val in expr.Translates)
-            {
-                var old = target.Translates.FirstOrDefault(x => x.EqualsTranslate(val));
-                if (old == null)
-                {
-                    target.Translates.Add((Translate)((ICloneable)val).Clone());
-                }
-            }
-
-            foreach (var val in expr.Samples)
-            {
-                var old = target.Samples.FirstOrDefault(x => x.EqualsSample(val));
-                if (old == null)
-                {
-                    target.Translates.Add((Translate)((ICloneable)val).Clone());
-                }
-            }
-
-            foreach (var val in expr.Sounds)
-            {
-                var old = target.Sounds.FirstOrDefault(x => x.EqualsSound(val));
-                if (old == null)
-                {
-                    target.Sounds.Add((Sound)((ICloneable)val).Clone());
-                }
-            }
-
-            return target;
-        }
 
     }
 }

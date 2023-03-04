@@ -2,7 +2,7 @@
 
 namespace LangTrainerFrontendWinForms.Model
 {
-    public class MainModel
+    public class TrainingModel
     {
         public Excercize1Model Model1 {get; set; }
 

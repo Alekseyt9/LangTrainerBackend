@@ -11,7 +11,7 @@ namespace LangTrainerTest.DataFillers
         public async Task TestFull()
         {
             var f = new CambridgeEnglishLoader();
-            var res = await f.GetData("face");
+            var res = await f.GetData("face", "english");
 
             Assert.NotNull(res);
         }
