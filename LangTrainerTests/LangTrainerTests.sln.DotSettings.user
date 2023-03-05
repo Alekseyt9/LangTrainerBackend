@@ -6,5 +6,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.DataFillers.CambridgeEnglishFillerTest.TestFull&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.APITest.LoadExpressionTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.TrainingStagesTest.Test&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

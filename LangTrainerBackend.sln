@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerAPI", "LangTrainerApi\LangTrainerAPI.csproj", "{266DDA8A-5E21-4C79-BC74-1B48395F9E78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerEntity", "LangTrainerEntity\LangTrainerEntity.csproj", "{898BA540-A923-411C-9C87-246185554EB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerModel", "LangTrainerEntity\LangTrainerModel.csproj", "{898BA540-A923-411C-9C87-246185554EB4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerDAL", "LangTrainerDAL\LangTrainerDAL.csproj", "{F7D9FADA-961C-4DCC-9D6D-690D95A5FC2E}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerServices", "Lang
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerClientModel", "LangTrainerClientModel\LangTrainerClientModel.csproj", "{AFA58008-9A99-4313-84C2-3BD27568705D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LangTrainerCommon", "LangTrainerCommon\LangTrainerCommon.csproj", "{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LangTrainerCommon", "LangTrainerCommon\LangTrainerCommon.csproj", "{9CDB2134-FAF7-4EA1-917F-EB1569ED5BDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

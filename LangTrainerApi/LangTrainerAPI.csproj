@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LangTrainerClientModel\LangTrainerClientModel.csproj" />
+    <ProjectReference Include="..\LangTrainerDAL\LangTrainerDAL.csproj" />
     <ProjectReference Include="..\LangTrainerServices\LangTrainerServices.csproj" />
   </ItemGroup>
 

@@ -12,5 +12,10 @@ namespace LangTrainerEntity.Entities.User
 
         public int Stage { get; set; }
 
+        public Guid ExpressionInGroupId { get; set; }
+
+        public ExpressionInGroup ExpressionInGroup { get; set; }
+
+
     }
 }

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LangTrainerEntity\LangTrainerEntity.csproj" />
+    <ProjectReference Include="..\LangTrainerEntity\LangTrainerModel.csproj" />
   </ItemGroup>
 
 </Project>
