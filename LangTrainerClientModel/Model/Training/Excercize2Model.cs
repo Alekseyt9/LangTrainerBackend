@@ -1,6 +1,4 @@
-﻿
-
-namespace LangTrainerFrontendWinForms.Model
+﻿namespace LangTrainerClientModel.Model.Training
 {
     public class Excercize2Model
     {

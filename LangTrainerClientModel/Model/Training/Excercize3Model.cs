@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LangTrainerFrontendWinForms.Model
+namespace LangTrainerClientModel.Model.Training
 {
     public class Excercize3Model
     {
