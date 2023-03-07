@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerClientModel.Services;
+using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities.Lang;
 
 namespace LangTrainerServices.Services.LangService
@@ -10,7 +11,10 @@ namespace LangTrainerServices.Services.LangService
 
         Task<Expression> LoadExpressionData(TokenInfo token);
 
-        FindResult FindExpressions(string str);
+        FindResult FindExpressions(FindModel model);
+
+        List<Language> GetLanguages();
+
 
     }
 

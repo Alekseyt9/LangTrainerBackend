@@ -4,7 +4,7 @@ namespace LangTrainerClientModel.Services
 {
     public class TranslateInfo
     {
-        public Guid Id { get; set; }
+        public Guid TranslateId { get; set; }
 
         public string Text { get; set; }
 

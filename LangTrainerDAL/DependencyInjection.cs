@@ -12,13 +12,13 @@ namespace LangTrainerDAL
         public static IServiceCollection RegisterPersistence(
             this IServiceCollection services, IConfiguration conf)
         {
-            
             var connStr = conf["DbConnection"];
+            var pass = conf["postgres_pass"];
 
-            services.AddSingleton<IAppRepository, AppRepository>();
+            services.AddScoped<IAppRepository, AppRepository>();
             services.AddDbContext<AppDbContext>(opt =>
             {
-                opt.UseNpgsql(connStr);
+                opt.UseNpgsql(String.Format(connStr, pass));
             });
 
             return services;

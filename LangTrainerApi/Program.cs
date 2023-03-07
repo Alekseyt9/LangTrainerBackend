@@ -10,7 +10,9 @@ namespace EngTrainerApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Configuration.AddJsonFile($"appsettings.json", true, true);
+            builder.Configuration
+                .AddJsonFile($"appsettings.json", true, true)
+                .AddUserSecrets<Program>();
 
             builder.Services.AddControllers();
 
@@ -38,8 +40,11 @@ namespace EngTrainerApi
 
         public static void Init(WebApplication app)
         {
-            var dbContext = app.Services.GetRequiredService<AppDbContext>();
-            dbContext.Database.EnsureCreated();
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
         }
 
         public static void RegisterServices(IServiceCollection services, IConfiguration conf)

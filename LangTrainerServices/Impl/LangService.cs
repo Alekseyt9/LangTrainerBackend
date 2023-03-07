@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerClientModel.Services;
+using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities.Lang;
 using LangTrainerServices.Services;
 using LangTrainerServices.Services.LangService;
@@ -8,11 +9,13 @@ namespace LangTrainerServices.Impl
 {
     internal class LangService : ILangService
     {
-        private IDataLoaderService _dataLoader;
+        private readonly IDataLoaderService _dataLoader;
+        private readonly IAppRepository _repository;
 
-        public LangService(IDataLoaderService dataLoader)
+        public LangService(IDataLoaderService dataLoader, IAppRepository repository)
         {
             _dataLoader = dataLoader;
+            _repository = repository;
         }
 
         public Expression AddExpression(Expression model)
@@ -25,9 +28,43 @@ namespace LangTrainerServices.Impl
             return _dataLoader.LoadExpressionData(info);
         }
 
-        public FindResult FindExpressions(string str)
+        public FindResult FindExpressions(FindModel model)
         {
-            throw new NotImplementedException();
+            var exprs = _repository.FindExpressions(model.SearchString, model.LanguageId);
+            if (exprs == null)
+            {
+                return null;
+            }
+
+            var res = new FindResult()
+            {
+                SearchString = model.SearchString
+            };
+
+            foreach (var expr in exprs)
+            {
+                var trs = expr.Translates.Where(x => x.LanguageId == model.TranslateLanguageId)
+                    .Select(x => new TranslateInfo()
+                    {
+                        Text = x.Text,
+                        LanguageId = x.LanguageId,
+                        TranslateId = x.Id
+                    }).ToList();
+
+                res.Items.Add(new FindItem()
+                {
+                    Expression = expr.Text,
+                    Translates = trs
+                });
+            }
+
+            return res;
         }
+
+        public List<Language> GetLanguages()
+        {
+            return _repository.GetLanguages();
+        }
+
     }
 }
