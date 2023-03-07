@@ -1,7 +1,7 @@
 ﻿
-using LangTrainerClientModel.Services.LangService;
+using LangTrainerClientModel.Services;
 using LangTrainerCommon.Helpers;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
 using Xunit;
 

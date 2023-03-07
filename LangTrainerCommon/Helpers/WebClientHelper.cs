@@ -6,9 +6,9 @@ namespace LangTrainerCommon.Helpers
 {
     public static class WebClientHelper
     {
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient _client = new();
 
-        public static async Task<T?> Get<T>(string url, Dictionary<string, object> pars)
+        public static async Task<T> Get<T>(string url, Dictionary<string, object> pars)
         {
             var sb = new StringBuilder();
             if (pars.Count > 0)
@@ -20,17 +20,22 @@ namespace LangTrainerCommon.Helpers
             foreach (var pair in pars)
             {
                 if (!first)
+                {
                     sb.Append("&");
+                }
 
-                sb.Append($@"{pair.Key}={pair.Value.ToString()}");
+                if (pair.Value != null)
+                {
+                    sb.Append($@"{pair.Key}={pair.Value.ToString()}");
+                }
 
                 first = false;
             }
 
-            return await Get<T?>(url + sb);
+            return await Get<T>(url + sb);
         }
 
-        public static async Task<T?> Get<T>(string url)
+        public static async Task<T> Get<T>(string url)
         {
             var response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode)
