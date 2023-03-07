@@ -1,5 +1,5 @@
 ﻿
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;  
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 

@@ -15,14 +15,12 @@ namespace LangTrainerTest
             var token = "test";
             var lang = "english";
 
-            var client = new HttpClient();
-            Expression expr = null;
-            var url = @$"https://localhost:44329/api/lang/gettokendata/?expression={token}&language={lang}";
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                expr = await response.Content.ReadAsAsync<Expression>();
-            }
+            var expr = await WebClientHelper.Get<Expression>(@"https://localhost:44329/api/lang/GetTokenData",
+                new Dictionary<string, object>()
+                {
+                    { "expression", token },
+                    { "language", lang }
+                });
 
             Assert.NotNull(expr);
             Assert.NotNull(expr.Text);
@@ -40,35 +38,36 @@ namespace LangTrainerTest
         [Fact]
         public async void FindInDictionary()
         {
-            var client = new HttpClient();
             var fModel = new FindModel()
             {
                 SearchString = "test",
             };
-            var url = @$"https://localhost:44329/api/lang/FindInDictionary/?SearchString={fModel.SearchString}&LanguageId={fModel.LanguageId}&TranslateLanguageId={fModel.TranslateLanguageId}";
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var res = await response.Content.ReadAsAsync<FindResult>();
-            }
+
+            var res = await WebClientHelper.Get<FindResult>(@"https://localhost:44329/api/lang/FindInDictionary",
+                new Dictionary<string, object>()
+                {
+                    { "SearchString", fModel.SearchString },
+                    { "LanguageId", fModel.LanguageId },
+                    { "TranslateLanguageId", fModel.TranslateLanguageId }
+                });
+
+            Assert.NotNull(res);
         }
 
         [Fact]
         public async void GetLanguages()
         {
             var res = await WebClientHelper.Get<List<Language>>(@"https://localhost:44329/api/lang/GetLanguages");
+            Assert.NotNull(res);
+            Assert.True(res.Count > 0);
         }
 
         [Fact]
         public async void GetTranslateLanguages()
         {
-            var client = new HttpClient();
-            var url = @$"https://localhost:44329/api/lang/GetTranslateLanguages";
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var res = await response.Content.ReadAsAsync<List<Language>>();
-            }
+            var res = await WebClientHelper.Get<List<Language>>(@"https://localhost:44329/api/lang/GetTranslateLanguages");
+            Assert.NotNull(res);
+            Assert.True(res.Count > 0);
         }
 
     }

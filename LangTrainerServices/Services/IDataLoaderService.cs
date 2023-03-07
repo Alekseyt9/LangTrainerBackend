@@ -1,6 +1,6 @@
 ﻿
 using LangTrainerClientModel.Services;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 
 namespace LangTrainerServices.Services
 {

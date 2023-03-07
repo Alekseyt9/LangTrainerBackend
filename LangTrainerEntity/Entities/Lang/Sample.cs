@@ -1,4 +1,4 @@
-﻿namespace LangTrainerEntity.Entities.Lang
+﻿namespace LangTrainerEntity.Entities
 {
     public class Sample : ICloneable
     {

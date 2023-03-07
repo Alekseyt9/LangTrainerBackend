@@ -10,5 +10,6 @@
     &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.LangControllerTest.FindInDictionary&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.LangControllerTest.GetLanguages&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.LangControllerTest.GetTranslateLanguages&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::DFF43E2C-1E6A-49CC-B826-103481BA5DF5::net7.0::LangTrainerTest.LangControllerTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -1,6 +1,6 @@
 ﻿
 using LangTrainerDAL.EntityConfigurations;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LangTrainerDAL.Services

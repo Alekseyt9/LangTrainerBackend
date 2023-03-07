@@ -1,9 +1,7 @@
 ﻿
 using LangTrainerClientModel.Services;
-using LangTrainerClientModel.Services.LangService;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
-using LangTrainerServices.Services.LangService;
 
 namespace LangTrainerServices.Impl
 {

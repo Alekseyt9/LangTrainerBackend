@@ -1,10 +1,9 @@
 ﻿
 using System.Text;
 using HtmlAgilityPack;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LangTrainerServices.Impl.DataFillers
 {

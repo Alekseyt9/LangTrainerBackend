@@ -1,7 +1,7 @@
 ﻿
 using HtmlAgilityPack;
 using LangTrainerCommon.Helpers;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
 

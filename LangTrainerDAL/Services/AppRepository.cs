@@ -1,6 +1,5 @@
 ﻿
-using LangTrainerEntity.Entities.Lang;
-using LangTrainerEntity.Entities.User;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
 using Microsoft.EntityFrameworkCore;
 

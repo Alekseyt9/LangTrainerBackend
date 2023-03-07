@@ -1,7 +1,7 @@
 ﻿
 using System.Reflection;
 using LangTrainerClientModel.Services;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 using LangTrainerEntity.Helpers;
 using LangTrainerServices.Model.DataFillers;
 using LangTrainerServices.Services;

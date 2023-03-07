@@ -1,9 +1,8 @@
 ﻿
 using LangTrainerClientModel.Services;
-using LangTrainerClientModel.Services.LangService;
-using LangTrainerEntity.Entities.Lang;
+using LangTrainerEntity.Entities;
 
-namespace LangTrainerServices.Services.LangService
+namespace LangTrainerServices.Services
 {
     public interface ILangService
     {
@@ -14,7 +13,6 @@ namespace LangTrainerServices.Services.LangService
         FindResult FindExpressions(FindModel model);
 
         List<Language> GetLanguages();
-
 
     }
 

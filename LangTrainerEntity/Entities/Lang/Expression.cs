@@ -1,4 +1,6 @@
-﻿namespace LangTrainerEntity.Entities.Lang
+﻿
+
+namespace LangTrainerEntity.Entities
 {
     public class Expression
     {
@@ -9,7 +11,6 @@
         public ICollection<Translate> Translates { get; set; } = new HashSet<Translate>();
 
         public ICollection<Sound> Sounds { get; set; } = new List<Sound>();
-
 
         public Guid LanguageId { get; set; }
 

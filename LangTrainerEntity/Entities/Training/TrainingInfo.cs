@@ -1,6 +1,6 @@
 ﻿
 
-namespace LangTrainerEntity.Entities.User
+namespace LangTrainerEntity.Entities
 {
     public class TrainingInfo
     {

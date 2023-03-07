@@ -1,7 +1,6 @@
 ﻿
 using LangTrainerServices.Impl;
 using LangTrainerServices.Services;
-using LangTrainerServices.Services.LangService;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LangTrainerServies

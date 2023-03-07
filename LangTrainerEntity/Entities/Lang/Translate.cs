@@ -1,4 +1,4 @@
-﻿namespace LangTrainerEntity.Entities.Lang
+﻿namespace LangTrainerEntity.Entities
 {
     /// <summary>
     /// Перевод. Если на тот же язык - то определение 

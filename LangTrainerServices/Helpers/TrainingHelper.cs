@@ -1,5 +1,5 @@
 ﻿
-using LangTrainerEntity.Entities.User;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Services.TrainingService;
 
 namespace LangTrainerServices.Helpers

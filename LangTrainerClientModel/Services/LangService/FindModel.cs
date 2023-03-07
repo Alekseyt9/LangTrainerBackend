@@ -1,6 +1,6 @@
 ﻿
 
-namespace LangTrainerClientModel.Services.LangService
+namespace LangTrainerClientModel.Services
 {
     public class FindModel
     {

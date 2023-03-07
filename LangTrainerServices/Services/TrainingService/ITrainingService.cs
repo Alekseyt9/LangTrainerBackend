@@ -1,7 +1,6 @@
 ﻿
 using LangTrainerClientModel.Model.Training;
-using LangTrainerEntity.Entities.Lang;
-using LangTrainerEntity.Entities.User;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Services.TrainingService;
 
 namespace LangTrainerServices
