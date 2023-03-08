@@ -34,6 +34,11 @@ namespace LangTrainerServices.Impl.DataFillers
             var i = 0;
 
             var langsNode = doc.DocumentNode.SelectSingleNode("//ul[contains(@class, 'pronunciations-list')]");
+            if (langsNode == null)
+            {
+                return;
+            }
+
             foreach (var node in langsNode.ChildNodes)
             {
                 if (i > 2)

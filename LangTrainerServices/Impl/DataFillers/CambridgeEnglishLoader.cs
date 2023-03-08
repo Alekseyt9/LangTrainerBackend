@@ -22,20 +22,30 @@ namespace LangTrainerServices.Impl.DataFillers
             var web = new HtmlWeb();
             var doc = web.Load($"https://dictionary.cambridge.org/dictionary/english/{pars.Token}");
 
-            LoadTranslates(doc, expr);
-            //LoadSamples(doc, expr);
+            LoadTranslates(ctx, doc, expr);
             await LoadSounds(doc, expr);
+
+            if (expr.Translates == null || expr.Translates.Count == 0)
+            {
+                return null;
+            }
 
             return expr;
         }
 
-        private void LoadTranslates(HtmlDocument doc, Expression expr)
+        private void LoadTranslates(DataLoaderContext ctx, HtmlDocument doc, Expression expr)
         {
             var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
+
+            if (meanNode == null)
+            {
+                return;
+            }
+
             var defNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_d')]");
             var tr = new Translate()
             {
-                Language = new Language() { Name = "english" },
+                Language = ctx.LanguageService.GetLanguage("english"),
                 Text = GetText(defNode)
             };
             expr.Translates.Add(tr);
@@ -45,9 +55,14 @@ namespace LangTrainerServices.Impl.DataFillers
 
         private void LoadSamples(HtmlNode meanNode, Translate tr)
         {
-            //var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
             var exsNode = meanNode.SelectSingleNode(".//div[contains(@class, 'ddef_b')]");
             var exNodes = exsNode.SelectNodes(".//span[contains(@class, 'eg deg')]");
+
+            if (exNodes == null)
+            {
+                return;
+            }
+
             foreach (var child in exNodes)
             {
                 tr.Samples.Add(new Sample()

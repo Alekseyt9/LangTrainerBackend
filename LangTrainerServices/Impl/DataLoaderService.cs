@@ -69,12 +69,16 @@ namespace LangTrainerServices.Impl
             foreach (var key in m_Loaders.Keys
                          .Where(x => x.Languages.Contains(langName)))
             {
-                var loader = m_Loaders[key];
-                var pars = new DataLoaderParams(info.Expression, langName);
-                var expr = await loader.GetData(
-                    ctx, pars
-                );
-                target = target.Union(expr);
+                try
+                {
+                    var loader = m_Loaders[key];
+                    var pars = new DataLoaderParams(info.Expression, langName);
+                    var expr = await loader.GetData(
+                        ctx, pars
+                    );
+                    target = target.Union(expr);
+                }
+                catch (Exception ex) { }
             }
 
             return target;

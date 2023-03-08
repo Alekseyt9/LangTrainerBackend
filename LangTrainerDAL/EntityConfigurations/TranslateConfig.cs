@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LangTrainerDAL.EntityConfigurations
 {
-
     internal class TranslateConfig : IEntityTypeConfiguration<Translate>
     {
         public void Configure(EntityTypeBuilder<Translate> builder)
@@ -14,7 +13,6 @@ namespace LangTrainerDAL.EntityConfigurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Text).IsRequired();
-            builder.HasIndex(x => x.LanguageId).IsUnique(true);
         }
 
     }
