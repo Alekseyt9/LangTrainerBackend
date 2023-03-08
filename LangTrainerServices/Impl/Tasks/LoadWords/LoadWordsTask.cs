@@ -1,6 +1,7 @@
 ﻿
 using LangTrainerClientModel.Services;
 using LangTrainerCommon.Helpers;
+using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
 using LangTrainerServices.Services.Tasks;
 
@@ -30,14 +31,13 @@ namespace LangTrainerServices.Impl.Tasks.LoadWords
 
             //todo отфильтровать по базе !!!
 
+            /*
             foreach (var word in pars.Tokens)
             {
                 try
                 {
-                    var res = await _dataLoaderService.LoadExpressionData(new TokenInfo()
-                    {
-                        Expression = word, Language = pars.Language
-                    });
+                    var res = await _dataLoaderService.LoadExpressionData(
+                        new WordInfo(word, pars.Language));
 
                     loaded++;
                     await Task.Delay(RandomHelper.GetInterval(100, 50));
@@ -51,7 +51,7 @@ namespace LangTrainerServices.Impl.Tasks.LoadWords
 
                 i++;
                 ctx.SetProgress(i/(float)cnt);
-            }
+            }*/
 
             ctx.SetStatus(ServerTaskStatus.Success);
             ctx.SetReport(

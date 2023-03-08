@@ -13,7 +13,8 @@ namespace LangTrainerDAL.EntityConfigurations
             builder.Property(x => x.Id);
             builder.HasKey(x => x.Id);
 
-            //builder.Property(x => x.Data).IsRequired();
+            builder.Property(x => x.Text).IsRequired();
+            builder.HasIndex(x => x.LanguageId).IsUnique(true);
         }
 
     }

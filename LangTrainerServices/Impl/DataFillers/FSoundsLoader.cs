@@ -4,23 +4,21 @@ using LangTrainerCommon.Helpers;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
+using LangTrainerServices.Services.DataLoader;
 
 namespace LangTrainerServices.Impl.DataFillers
 {
     [DataLoader(@"", new []{ "english", "french", "german", "italian" })]
     internal class FSoundsLoader : IDataLoader
     {
-        public async Task<Expression> GetData(string token, string language)
+        public async Task<Expression> GetData(DataLoaderContext ctx, DataLoaderParams pars)
         {
-            var url = GetUrl(token, language);
+            var url = GetUrl(pars.Token, pars.Language);
 
             var expr = new Expression()
             {
-                Text = token,
-                Language = new Language()
-                {
-                    Name = "english"
-                }
+                Text = pars.Token,
+                Language = ctx.LanguageService.GetLanguage("english")
             };
 
             var web = new HtmlWeb();

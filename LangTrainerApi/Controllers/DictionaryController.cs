@@ -1,0 +1,57 @@
+﻿
+using LangTrainerClientModel.Services;
+using LangTrainerClientModel.Services.LangService;
+using LangTrainerEntity.Entities;
+using LangTrainerServices.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LangTrainerAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DictionaryController
+    {
+        private readonly IDictionaryService _dictionaryService;
+        private readonly ILanguageService _languageService; 
+
+        public DictionaryController(IDictionaryService service, ILanguageService languageService)
+        {
+            _dictionaryService = service ?? throw new ArgumentNullException(nameof(service));
+            _languageService = languageService ?? throw new ArgumentNullException(nameof(languageService));
+        }
+
+        [HttpGet("GetTokenData")]
+        public async Task<ActionResult<Expression>> GetTokenData([FromQuery]WordInfo word)
+        {
+            var val = await _dictionaryService.LoadExpressionData(word);
+            return new ActionResult<Expression>(val);
+        }
+
+        [HttpGet("FindInDictionary")]
+        public ActionResult<FindResult> FindInDictionary([FromQuery]FindModel model)
+        {
+            var res = _dictionaryService.FindExpressions(model);
+            return res;
+        }
+
+        [HttpGet("GetLanguages")]
+        public ActionResult<List<Language>> GetLanguages()
+        {
+            return _languageService.GetLanguages();
+        }
+
+        [HttpGet("GetTranslateLanguages")]
+        public ActionResult<List<Language>> GetTranslateLanguages()
+        {
+            return _languageService.GetTranslateLanguages();
+        }
+
+        [HttpGet("LoadInBase")]
+        public async Task<ActionResult<LoadResult>> LoadInBase([FromQuery] WordInfo word)
+        {
+            var val = await _dictionaryService.LoadInBase(word);
+            return new ActionResult<LoadResult>(val);
+        }
+
+    }
+}

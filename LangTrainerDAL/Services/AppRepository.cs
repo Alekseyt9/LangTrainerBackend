@@ -17,12 +17,20 @@ namespace LangTrainerDAL.Services
         public ICollection<Expression> FindExpressions(string str, Guid? languageId)
         {
             return _dbContext.Expressions
-                .Where(x => EF.Functions.Like(x.Text, $"%{str}%")).ToList();
+                .Where(x => EF.Functions.Like(x.Text, $"%{str}%"))
+                .Include(x => x.Language)
+                .Include(x=> x.Sounds)
+                .Include(x => x.Translates)
+                    .ThenInclude(y => y.Language)
+                .Include(x => x.Translates)
+                    .ThenInclude(y => y.Samples)
+                .ToList();
         }
 
         public void SaveExpression(Expression expr)
         {
-            throw new NotImplementedException();
+            _dbContext.Expressions.Add(expr);
+            _dbContext.SaveChanges(true);
         }
 
         public void SaveTraining(ICollection<TrainingInfo> trInfos)

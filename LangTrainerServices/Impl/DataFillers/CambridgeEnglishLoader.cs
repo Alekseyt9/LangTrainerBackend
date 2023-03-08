@@ -4,25 +4,23 @@ using HtmlAgilityPack;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
+using LangTrainerServices.Services.DataLoader;
 
 namespace LangTrainerServices.Impl.DataFillers
 {
     [DataLoader("dictionary.cambridge.org_eng", "english")]
     internal class CambridgeEnglishLoader : IDataLoader
     {
-        public async Task<Expression> GetData(string token, string language)
+        public async Task<Expression> GetData(DataLoaderContext ctx, DataLoaderParams pars)
         {
             var expr = new Expression()
             {
-                Text = token,
-                Language = new Language()
-                {
-                    Name = "english"
-                }
+                Text = pars.Token,
+                Language = ctx.LanguageService.GetLanguage("english")
             };
 
             var web = new HtmlWeb();
-            var doc = web.Load($"https://dictionary.cambridge.org/dictionary/english/{token}");
+            var doc = web.Load($"https://dictionary.cambridge.org/dictionary/english/{pars.Token}");
 
             LoadTranslates(doc, expr);
             //LoadSamples(doc, expr);

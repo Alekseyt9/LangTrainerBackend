@@ -9,6 +9,6 @@ namespace LangTrainerServices.Services
         /// <summary>
         /// Find and load data from sites
         /// </summary>
-        Task<Expression> LoadExpressionData(TokenInfo info);
+        Task<Expression> LoadExpressionData(WordInfo info);
     }
 }

@@ -1,16 +1,17 @@
 ﻿
 using LangTrainerClientModel.Services;
+using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
 
 namespace LangTrainerServices.Impl
 {
-    internal class LangService : ILangService
+    internal class DictionaryService : IDictionaryService
     {
         private readonly IDataLoaderService _dataLoader;
         private readonly IAppRepository _repository;
 
-        public LangService(IDataLoaderService dataLoader, IAppRepository repository)
+        public DictionaryService(IDataLoaderService dataLoader, IAppRepository repository)
         {
             _dataLoader = dataLoader;
             _repository = repository;
@@ -21,7 +22,7 @@ namespace LangTrainerServices.Impl
             throw new NotImplementedException();
         }
 
-        public Task<Expression> LoadExpressionData(TokenInfo info)
+        public Task<Expression> LoadExpressionData(WordInfo info)
         {
             return _dataLoader.LoadExpressionData(info);
         }
@@ -41,7 +42,9 @@ namespace LangTrainerServices.Impl
 
             foreach (var expr in exprs)
             {
-                var trs = expr.Translates.Where(x => x.LanguageId == model.TranslateLanguageId)
+                var trs = expr.Translates
+                    .Where(x => model.TranslateLanguageId.HasValue && x.LanguageId == model.TranslateLanguageId ||
+                                !model.TranslateLanguageId.HasValue)
                     .Select(x => new TranslateInfo()
                     {
                         Text = x.Text,
@@ -59,9 +62,34 @@ namespace LangTrainerServices.Impl
             return res;
         }
 
-        public List<Language> GetLanguages()
+        public async Task<LoadResult> LoadInBase(WordInfo info)
         {
-            return _repository.GetLanguages();
+            try
+            {
+                var data = await _dataLoader.LoadExpressionData(info);
+                if (data != null && data.Translates != null && data.Translates.Count > 0)
+                {
+                    _repository.SaveExpression(data);
+
+                    return new LoadResult()
+                    {
+                        WordFound = true
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                return new LoadResult()
+                {
+                    Message = e.Message,
+                    WordFound = false
+                };
+            }
+
+            return new LoadResult()
+            {
+                WordFound = false
+            };
         }
 
     }

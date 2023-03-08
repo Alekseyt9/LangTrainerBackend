@@ -1,20 +1,19 @@
 ﻿
 using LangTrainerClientModel.Services;
+using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities;
 
 namespace LangTrainerServices.Services
 {
-    public interface ILangService
+    public interface IDictionaryService
     {
         Expression AddExpression(Expression model);
 
-        Task<Expression> LoadExpressionData(TokenInfo token);
+        Task<Expression> LoadExpressionData(WordInfo word);
 
         FindResult FindExpressions(FindModel model);
 
-        List<Language> GetLanguages();
-
-
+        Task<LoadResult> LoadInBase(WordInfo word);
     }
 
 }

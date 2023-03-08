@@ -19,13 +19,12 @@ namespace LangTrainerCommon.Helpers
             var first = true;
             foreach (var pair in pars)
             {
-                if (!first)
-                {
-                    sb.Append("&");
-                }
-
                 if (pair.Value != null)
                 {
+                    if (!first)
+                    {
+                        sb.Append("&");
+                    }
                     sb.Append($@"{pair.Key}={pair.Value.ToString()}");
                 }
 

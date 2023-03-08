@@ -19,8 +19,9 @@ namespace LangTrainerServies
 
         private static void Register(IServiceCollection services)
         {
-            services.AddTransient<ILangService, LangService>();
+            services.AddTransient<IDictionaryService, DictionaryService>();
             services.AddTransient<IDataLoaderService, DataLoaderService>();
+            services.AddTransient<ILanguageService, LanguageService>();
         }
 
     }
