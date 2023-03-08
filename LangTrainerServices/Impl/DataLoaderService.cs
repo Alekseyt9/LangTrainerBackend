@@ -66,19 +66,19 @@ namespace LangTrainerServices.Impl
             var ctx = new DataLoaderContext(_languageService);
             var langName = GetLangName(info.LanguageId);
 
+            var taskList = new List<Task<Expression>>();
             foreach (var key in m_Loaders.Keys
                          .Where(x => x.Languages.Contains(langName)))
             {
-                try
-                {
-                    var loader = m_Loaders[key];
-                    var pars = new DataLoaderParams(info.Expression, langName);
-                    var expr = await loader.GetData(
-                        ctx, pars
-                    );
-                    target = target.Union(expr);
-                }
-                catch (Exception ex) { }
+                var loader = m_Loaders[key];
+                var pars = new DataLoaderParams(info.Expression, langName);
+                taskList.Add(loader.GetData(ctx, pars));
+            }
+
+            var resList = await Task.WhenAll(taskList);
+            foreach (var expr in resList)
+            {
+                target = target.Union(expr);
             }
 
             return target;
