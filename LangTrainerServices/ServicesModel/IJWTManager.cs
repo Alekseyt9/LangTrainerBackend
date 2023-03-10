@@ -5,6 +5,6 @@ namespace LangTrainerServices.Services
 {
     public interface IJWTManager
     {
-        TokensAuth Authenticate(UserAuth users);
+        TokensAuth Authenticate(UserAuth userAuth);
     }
 }

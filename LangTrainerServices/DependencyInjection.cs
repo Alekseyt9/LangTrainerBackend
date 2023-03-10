@@ -2,6 +2,7 @@
 using LangTrainerServices.Impl;
 using LangTrainerServices.Services;
 using LangTrainerServices.ServicesImpl;
+using LangTrainerServices.ServicesModel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LangTrainerServies
@@ -24,6 +25,7 @@ namespace LangTrainerServies
             services.AddTransient<IDataLoaderService, DataLoaderService>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IJWTManager, JWTManager>();
+            services.AddTransient<IUserService, UserService>();
         }
 
     }

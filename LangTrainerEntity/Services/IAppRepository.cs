@@ -13,5 +13,7 @@ namespace LangTrainerServices.Services
 
         List<Language> GetLanguages();
 
+        ICollection<User> GetUsers(string login);
+
     }
 }

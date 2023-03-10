@@ -43,5 +43,10 @@ namespace LangTrainerDAL.Services
             return _dbContext.Languages.ToList();
         }
 
+        public ICollection<User> GetUsers(string login)
+        {
+            return _dbContext.Users.Where(x => x.Login == login).ToList();
+        }
+
     }
 }

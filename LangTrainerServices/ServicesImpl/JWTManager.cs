@@ -12,22 +12,17 @@ namespace LangTrainerServices.ServicesImpl
     internal class JWTManager : IJWTManager
     {
         private readonly IConfiguration _configuration;
+        private readonly IAppRepository _repository;
 
-        private readonly Dictionary<string, string> UsersRecords = new Dictionary<string, string>
-        {
-            { "user1", "password1" },
-            { "user2", "password2" },
-            { "user3", "password3" },
-        };
-
-        public JWTManager(IConfiguration configuration)
+        public JWTManager(IConfiguration configuration, IAppRepository repository)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public TokensAuth Authenticate(UserAuth users)
+        public TokensAuth Authenticate(UserAuth userAuth)
         {
-            if (!UsersRecords.Any(x => x.Key == users.Name && x.Value == users.Password))
+            if (!_repository.GetUsers(userAuth.Login).Any())
             {
                 return null;
             }
@@ -38,7 +33,7 @@ namespace LangTrainerServices.ServicesImpl
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, users.Name)
+                    new Claim(ClaimTypes.Name, userAuth.Login)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(

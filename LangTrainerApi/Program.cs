@@ -3,7 +3,6 @@ using LangTrainerDAL;
 using LangTrainerDAL.Services;
 using LangTrainerServies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -48,12 +47,9 @@ namespace EngTrainerApi
 
         public static void Init(WebApplication app)
         {
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                //dbContext.Database.EnsureCreated();
-                dbContext.Database.Migrate();
-            }
+            using var scope = app.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            dbContext.Database.Migrate();
         }
 
         public static void RegisterServices(IServiceCollection services, IConfiguration conf)

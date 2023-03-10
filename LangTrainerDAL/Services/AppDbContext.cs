@@ -1,18 +1,26 @@
 ﻿
 using LangTrainerDAL.EntityConfigurations;
 using LangTrainerEntity.Entities;
+using LangTrainerServices.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace LangTrainerDAL.Services
 {
     public class AppDbContext : DbContext
     {
+        private IConfiguration _configuration;
+
         public DbSet<Expression> Expressions { get; set; }
 
         public DbSet<Language> Languages { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public DbSet<User> Users { get; set; }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) 
+            : base(options)
         {
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +37,7 @@ namespace LangTrainerDAL.Services
             base.OnModelCreating(modelBuilder);
         }
 
-        private static void InitData(ModelBuilder modelBuilder)
+        private void InitData(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Language>().HasData(
                 new List<Language>()
@@ -66,6 +74,25 @@ namespace LangTrainerDAL.Services
                     },
                 }
             );
+
+            modelBuilder.Entity<User>().HasData(
+                new List<User>() { GetAdminUserForInit() }
+            );
+        }
+
+        public User GetAdminUserForInit()
+        {
+            var pass = _configuration["admin_password"];
+            string salt;
+            var hash = PasswordHashHelper.HashPasword(pass, out salt);
+            return new User()
+            {
+                Login = "admin",
+                PasswordHash = hash,
+                PasswordSalt = salt,
+                Email = "-",
+                Id = Guid.Parse("98D48C5D-A10F-4704-9C08-949FE791CF4D")
+            };
         }
 
     }
