@@ -1,12 +1,30 @@
 ﻿
-
+using Newtonsoft.Json;
 using System.Text;
 
 namespace LangTrainerCommon.Helpers
 {
     public static class WebClientHelper
     {
-        private static readonly HttpClient _client = new();
+        private static readonly HttpClient _client = new()
+        {
+            Timeout = TimeSpan.FromSeconds(3)
+        };
+
+        public static async Task<T> Post<T>(string url, Dictionary<string, object> pars)
+        {
+            var myContent = JsonConvert.SerializeObject(pars);
+
+            var response = await _client.PostAsync(url, 
+                new StringContent(myContent, Encoding.UTF8, "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                var res = await response.Content.ReadAsAsync<T>();
+                return res;
+            }
+
+            throw new Exception(response.ReasonPhrase);
+        }
 
         public static async Task<T> Get<T>(string url, Dictionary<string, object> pars)
         {
@@ -43,7 +61,7 @@ namespace LangTrainerCommon.Helpers
                 return res;
             }
 
-            return default;
+            throw new Exception(response.ReasonPhrase);
         }
 
     }

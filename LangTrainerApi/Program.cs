@@ -2,6 +2,10 @@
 using LangTrainerDAL;
 using LangTrainerDAL.Services;
 using LangTrainerServies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace EngTrainerApi
 {
@@ -32,7 +36,10 @@ namespace EngTrainerApi
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication(); 
             app.UseAuthorization();
+
             app.MapControllers();
 
             app.Run();
@@ -51,6 +58,29 @@ namespace EngTrainerApi
         {
             services.ConfigureLangServices();
             services.RegisterPersistence(conf);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                var Key = Encoding.UTF8.GetBytes(conf["JWT_key"]);
+                o.SaveToken = true;
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = conf["JWT_key"],
+                    ValidAudience = conf["JWT_key"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Key)
+                };
+            });
+
+            services.AddSingleton<IConfiguration>(conf);
+
         }
 
     }

@@ -12,7 +12,31 @@ namespace LangTrainerCommon.Helpers
             return decodedString;
         }
 
+        public static string WrapText(string text, int lengthWrap)
+        {
+            var tText = text.Split(' ');
+            var rText = "";
+            var finalText = "";
 
+            for (int i = 0; i < tText.Length; i++)
+            {
+                if (rText.Length < lengthWrap)
+                {
+                    rText += tText[i] + " ";
+                }
+                else
+                {
+                    finalText += rText + "\n";
+                    rText = tText[i] + " ";
+                }
 
+                if (tText.Length == i + 1)
+                {
+                    finalText += rText;
+                }
+            }
+
+            return finalText;
+        }
     }
 }

@@ -3,10 +3,12 @@ using LangTrainerClientModel.Services;
 using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LangTrainerAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DictionaryController
