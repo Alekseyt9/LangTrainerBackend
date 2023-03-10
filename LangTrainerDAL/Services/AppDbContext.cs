@@ -22,6 +22,7 @@ namespace LangTrainerDAL.Services
             modelBuilder.ApplyConfiguration(new SampleConfig()); 
             modelBuilder.ApplyConfiguration(new SoundConfig());
             modelBuilder.ApplyConfiguration(new TranslateConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
 
             InitData(modelBuilder);
 
