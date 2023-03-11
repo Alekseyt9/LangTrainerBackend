@@ -13,11 +13,20 @@
 
         public Guid LanguageId { get; set; }
 
+        public Expression Expression { get; set; }
+
+        public Guid ExpressionId { get; set; }
+
         public ICollection<Sample> Samples { get; set; } = new List<Sample>();
 
         public object Clone()
         {
-            return new Translate() { Text = Text, Language = Language, LanguageId = LanguageId };
+            return new Translate()
+            {
+                Text = Text, 
+                Language = Language, 
+                LanguageId = LanguageId
+            };
         }
 
         public bool EqualsTranslate(Translate other)

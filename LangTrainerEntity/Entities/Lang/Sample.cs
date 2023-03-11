@@ -6,6 +6,10 @@
 
         public string Text { get; set; }
 
+        public Translate Translate { get; set; }
+
+        public Guid TranslateId { get; set; }
+
         public object Clone()
         {
             return new Sample() { Text = Text};

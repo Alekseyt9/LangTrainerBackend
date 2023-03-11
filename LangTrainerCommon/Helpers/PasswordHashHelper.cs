@@ -10,16 +10,15 @@ namespace LangTrainerServices.Helpers
         const int iterations = 350000;
         private static readonly HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
-        public static string HashPasword(string password, out string saltStr)
+        public static string HashPasword(string password, out byte[] salt)
         {
-            var salt = RandomNumberGenerator.GetBytes(keySize);
+            salt = RandomNumberGenerator.GetBytes(keySize);
             var hash = Rfc2898DeriveBytes.Pbkdf2(
                 Encoding.UTF8.GetBytes(password),
                 salt,
                 iterations,
                 hashAlgorithm,
                 keySize);
-            saltStr = Encoding.UTF8.GetString(salt);
             return Convert.ToHexString(hash);
         }
 

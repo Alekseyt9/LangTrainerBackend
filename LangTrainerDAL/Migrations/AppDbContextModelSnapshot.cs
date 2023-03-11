@@ -102,7 +102,7 @@ namespace LangTrainerDAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("TranslateId")
+                    b.Property<Guid>("TranslateId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -122,7 +122,7 @@ namespace LangTrainerDAL.Migrations
                         .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<Guid?>("ExpressionId")
+                    b.Property<Guid>("ExpressionId")
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("Hash")
@@ -140,13 +140,58 @@ namespace LangTrainerDAL.Migrations
                     b.ToTable("Sound");
                 });
 
+            modelBuilder.Entity("LangTrainerEntity.Entities.TrainingGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TrainingGroup");
+                });
+
+            modelBuilder.Entity("LangTrainerEntity.Entities.TrainingInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("LastSuccessTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("LastUpdateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Stage")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("TranslateInGroupId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TranslateInGroupId");
+
+                    b.ToTable("TrainingInfo");
+                });
+
             modelBuilder.Entity("LangTrainerEntity.Entities.Translate", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ExpressionId")
+                    b.Property<Guid>("ExpressionId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("LanguageId")
@@ -165,6 +210,32 @@ namespace LangTrainerDAL.Migrations
                     b.ToTable("Translate");
                 });
 
+            modelBuilder.Entity("LangTrainerEntity.Entities.TranslateInGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TrainingInfoId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TranslateId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("TrainingInfoId");
+
+                    b.HasIndex("TranslateId");
+
+                    b.ToTable("TranslateInGroup");
+                });
+
             modelBuilder.Entity("LangTrainerEntity.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -179,11 +250,11 @@ namespace LangTrainerDAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<byte[]>("PassSalt")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("bytea");
 
-                    b.Property<string>("PasswordSalt")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -203,9 +274,23 @@ namespace LangTrainerDAL.Migrations
                             Id = new Guid("98d48c5d-a10f-4704-9c08-949fe791cf4d"),
                             Email = "-",
                             Login = "admin",
-                            PasswordHash = "EAE818BB1A732D5FE43B0CAB0115496F63EDF45F580199D9B59A8D4D4F5A0C8CB4D7911EAF53FB1D3C7108B385BAE96B6C6A6634977EB4C77C6916797C4F2D2C",
-                            PasswordSalt = "�p��f�\"A�s���rp�;�S�8�������8���S�K�K.�1��U��4k(KVa[N/�"
+                            PassSalt = new byte[] { 223, 196, 27, 169, 141, 56, 1, 184, 201, 65, 140, 255, 177, 207, 147, 215, 113, 143, 181, 42, 25, 106, 101, 94, 52, 114, 252, 230, 76, 157, 133, 124, 118, 187, 126, 204, 228, 113, 142, 28, 16, 177, 248, 220, 26, 224, 35, 83, 172, 119, 206, 18, 33, 241, 231, 33, 152, 101, 76, 198, 108, 81, 120, 242 },
+                            PasswordHash = "C6D4A4AB578A4F73A688C71D56E0E864C37D02CCB9A2C46BC18B265F58100DC259688C904C57D6F7BD414D50F97941B6644DDAFA805C56D4E648C6FF66942467"
                         });
+                });
+
+            modelBuilder.Entity("LangTrainerModel.Entities.Training.UserSettings", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserSettings");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.Expression", b =>
@@ -221,23 +306,55 @@ namespace LangTrainerDAL.Migrations
 
             modelBuilder.Entity("LangTrainerEntity.Entities.Sample", b =>
                 {
-                    b.HasOne("LangTrainerEntity.Entities.Translate", null)
+                    b.HasOne("LangTrainerEntity.Entities.Translate", "Translate")
                         .WithMany("Samples")
-                        .HasForeignKey("TranslateId");
+                        .HasForeignKey("TranslateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Translate");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.Sound", b =>
                 {
-                    b.HasOne("LangTrainerEntity.Entities.Expression", null)
+                    b.HasOne("LangTrainerEntity.Entities.Expression", "Expression")
                         .WithMany("Sounds")
-                        .HasForeignKey("ExpressionId");
+                        .HasForeignKey("ExpressionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Expression");
+                });
+
+            modelBuilder.Entity("LangTrainerEntity.Entities.TrainingGroup", b =>
+                {
+                    b.HasOne("LangTrainerEntity.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LangTrainerEntity.Entities.TrainingInfo", b =>
+                {
+                    b.HasOne("LangTrainerEntity.Entities.TranslateInGroup", "TranslateInGroup")
+                        .WithMany()
+                        .HasForeignKey("TranslateInGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TranslateInGroup");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.Translate", b =>
                 {
-                    b.HasOne("LangTrainerEntity.Entities.Expression", null)
+                    b.HasOne("LangTrainerEntity.Entities.Expression", "Expression")
                         .WithMany("Translates")
-                        .HasForeignKey("ExpressionId");
+                        .HasForeignKey("ExpressionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LangTrainerEntity.Entities.Language", "Language")
                         .WithMany()
@@ -245,7 +362,47 @@ namespace LangTrainerDAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Expression");
+
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("LangTrainerEntity.Entities.TranslateInGroup", b =>
+                {
+                    b.HasOne("LangTrainerEntity.Entities.TrainingGroup", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LangTrainerEntity.Entities.TrainingInfo", "TrainingInfo")
+                        .WithMany()
+                        .HasForeignKey("TrainingInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LangTrainerEntity.Entities.Translate", "Translate")
+                        .WithMany()
+                        .HasForeignKey("TranslateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("TrainingInfo");
+
+                    b.Navigation("Translate");
+                });
+
+            modelBuilder.Entity("LangTrainerModel.Entities.Training.UserSettings", b =>
+                {
+                    b.HasOne("LangTrainerEntity.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.Expression", b =>

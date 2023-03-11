@@ -19,7 +19,7 @@ namespace LangTrainerDAL.EntityConfigurations
             builder.HasIndex(x => x.Login).IsUnique(true);
 
             builder.Property(x => x.PasswordHash).IsRequired();
-            builder.Property(x => x.PasswordSalt).IsRequired();
+            builder.Property(x => x.PassSalt).IsRequired();
         }
 
     }

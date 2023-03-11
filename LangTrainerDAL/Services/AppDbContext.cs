@@ -27,10 +27,14 @@ namespace LangTrainerDAL.Services
         {
             modelBuilder.ApplyConfiguration(new ExpressionConfig());
             modelBuilder.ApplyConfiguration(new LanguageConfig());
+            modelBuilder.ApplyConfiguration(new TranslateConfig());
             modelBuilder.ApplyConfiguration(new SampleConfig()); 
             modelBuilder.ApplyConfiguration(new SoundConfig());
-            modelBuilder.ApplyConfiguration(new TranslateConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new UserSettingsConfig());
+            modelBuilder.ApplyConfiguration(new TrainingGroupConfig());
+            modelBuilder.ApplyConfiguration(new TranslateInGroupConfig());
+            modelBuilder.ApplyConfiguration(new TrainingInfoConfig());
 
             InitData(modelBuilder);
 
@@ -83,13 +87,13 @@ namespace LangTrainerDAL.Services
         public User GetAdminUserForInit()
         {
             var pass = _configuration["admin_password"];
-            string salt;
+            byte[] salt;
             var hash = PasswordHashHelper.HashPasword(pass, out salt);
             return new User()
             {
                 Login = "admin",
                 PasswordHash = hash,
-                PasswordSalt = salt,
+                PassSalt = salt,
                 Email = "-",
                 Id = Guid.Parse("98D48C5D-A10F-4704-9C08-949FE791CF4D")
             };

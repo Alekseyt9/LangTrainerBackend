@@ -10,8 +10,9 @@ namespace LangTrainerEntity.Entities
 
         public string Email { get; set; }
 
-        public string PasswordSalt { get; set; }
+        public byte[] PassSalt { get; set; }
 
         public string PasswordHash { get; set; }
+
     }
 }

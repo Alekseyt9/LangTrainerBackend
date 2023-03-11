@@ -16,7 +16,7 @@ namespace LangTrainerServices.Helpers
             foreach (var i1 in trInfos)
             {
                 var i2 = tRes.Items
-                    .First(x => x.ExpressionInGroupId == i1.ExpressionInGroupId);
+                    .First(x => x.ExpressionInGroupId == i1.TranslateInGroupId);
                 res.Add(NextStage(i1, i2));
             }
 
@@ -30,8 +30,8 @@ namespace LangTrainerServices.Helpers
                 return new TrainingInfo()
                 {
                     Id = ti.Id,
-                    ExpressionInGroup = ti.ExpressionInGroup,
-                    ExpressionInGroupId = ti.ExpressionInGroupId,
+                    TranslateInGroup = ti.TranslateInGroup,
+                    TranslateInGroupId = ti.TranslateInGroupId,
                     LastSuccessTime = DateTime.Now,
                     LastUpdateTime = DateTime.Now,
                     Stage = ti.Stage + 1
@@ -41,8 +41,8 @@ namespace LangTrainerServices.Helpers
             return new TrainingInfo()
             {
                 Id = ti.Id,
-                ExpressionInGroup = ti.ExpressionInGroup,
-                ExpressionInGroupId = ti.ExpressionInGroupId,
+                TranslateInGroup = ti.TranslateInGroup,
+                TranslateInGroupId = ti.TranslateInGroupId,
                 LastSuccessTime = ti.LastSuccessTime,
                 LastUpdateTime = DateTime.Now,
                 Stage = ti.Stage,

@@ -11,6 +11,10 @@ namespace LangTrainerEntity.Entities
 
         public string Url { get; set; }
 
+        public Expression Expression { get; set; }
+
+        public Guid ExpressionId { get; set; }
+
         public object Clone()
         {
             return new Sound()

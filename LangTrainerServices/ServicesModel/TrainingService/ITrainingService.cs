@@ -13,7 +13,7 @@ namespace LangTrainerServices
 
         void SaveTraining(TrainingResult result);
 
-        ICollection<ExpressionInGroup> GetTrainingExpressions(User user);
+        ICollection<TranslateInGroup> GetTrainingExpressions(User user);
 
         TrainingModel GetTraining(User user);
 
