@@ -11,16 +11,11 @@ namespace LangTrainerAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IJWTManager _jWTManager;
+        private readonly IJWTManager _jWTManager;
 
         public UserController(IJWTManager jWTManager)
         {
             _jWTManager = jWTManager ?? throw new ArgumentNullException(nameof(jWTManager));
-        }
-
-        public IAsyncResult Register()
-        {
-            throw new NotImplementedException();
         }
 
         [AllowAnonymous]
@@ -36,6 +31,11 @@ namespace LangTrainerAPI.Controllers
             }
 
             return Ok(token);
+        }
+
+        public IAsyncResult Register()
+        {
+            throw new NotImplementedException();
         }
 
         public IAsyncResult PasswordRecovery()
