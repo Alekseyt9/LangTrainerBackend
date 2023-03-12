@@ -5,7 +5,8 @@ using LangTrainerServices.ServicesModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using LangTrainerFrontendWinForms.Services;
+using LangTrainerClientModel.Model;
+using LangTrainerClientModel.Model.Settings;
 
 namespace LangTrainerAPI.Controllers
 {
@@ -61,7 +62,7 @@ namespace LangTrainerAPI.Controllers
 
         [HttpGet]
         [Route("GetSettings")]
-        public ActionResult<Settings> GetSettings()
+        public ActionResult<SettingsValues> GetSettings()
         {
             var userId = GetCurrentUserId();
             return _settingsService.LoadUserSettings(userId);
@@ -69,10 +70,10 @@ namespace LangTrainerAPI.Controllers
 
         [HttpPost]
         [Route("SetSettings")]
-        public IActionResult SetSettings([FromBody] Settings settings)
+        public IActionResult SetSettings([FromBody] SettingsModel model)
         {
             var userId = GetCurrentUserId();
-            _settingsService.SaveUserSettings(userId, settings);
+            _settingsService.SaveUserSettings(userId, model.Data);
             return NoContent();
         }
 

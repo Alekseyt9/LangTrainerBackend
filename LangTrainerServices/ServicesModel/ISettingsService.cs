@@ -1,12 +1,12 @@
 ﻿
-using LangTrainerFrontendWinForms.Services;
+using LangTrainerClientModel.Model;
 
 namespace LangTrainerServices.ServicesModel
 {
     public interface ISettingsService
     {
-        Settings LoadUserSettings(Guid userId);
+        SettingsValues LoadUserSettings(Guid userId);
 
-        void SaveUserSettings(Guid userId, Settings settings);
+        void SaveUserSettings(Guid userId, SettingsValues settings);
     }
 }

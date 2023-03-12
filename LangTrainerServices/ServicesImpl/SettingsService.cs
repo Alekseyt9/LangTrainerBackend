@@ -1,5 +1,5 @@
 ﻿
-using LangTrainerFrontendWinForms.Services;
+using LangTrainerClientModel.Model;
 using LangTrainerServices.Services;
 using LangTrainerServices.ServicesModel;
 using Newtonsoft.Json;
@@ -15,21 +15,21 @@ namespace LangTrainerServices.ServicesImpl
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Settings LoadUserSettings(Guid userId)
+        public SettingsValues LoadUserSettings(Guid userId)
         {
             var obj = _repository.GetUserSettings(userId);
             var snapshot = obj.Data != null
-                ? (Dictionary<string, object>)JsonConvert.DeserializeObject(
-                    obj.Data, typeof(Dictionary<string, object>))
-                : new Dictionary<string, object>();
-            var settings = new Settings(snapshot);
-            return settings;
+                ? (SettingsValues)JsonConvert.DeserializeObject(
+                    obj.Data, typeof(SettingsValues))
+                : new SettingsValues();
+           
+            return snapshot;
         }
 
-        public void SaveUserSettings(Guid userId, Settings settings)
+        public void SaveUserSettings(Guid userId, SettingsValues settings)
         {
             var obj = _repository.GetUserSettings(userId);
-            obj.Data = JsonConvert.SerializeObject(settings.GetSnapshot());
+            obj.Data = JsonConvert.SerializeObject(settings);
             _repository.Save();
         }
 
