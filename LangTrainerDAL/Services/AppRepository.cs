@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Lang;
 using LangTrainerModel.Entities.Training;
 using LangTrainerServices.Services;
 using Microsoft.EntityFrameworkCore;
@@ -63,6 +64,12 @@ namespace LangTrainerDAL.Services
         public void Save()
         {
             _dbContext.SaveChanges();
+        }
+
+        public PartOfSpeech GetPartOfSpeech(string name, Guid languageId)
+        {
+            return _dbContext.PartOfSpeech
+                .FirstOrDefault(x => x.LanguageId == languageId && x.Name == name);
         }
 
     }

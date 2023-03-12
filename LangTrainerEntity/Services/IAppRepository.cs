@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Lang;
 using LangTrainerModel.Entities.Training;
 
 namespace LangTrainerServices.Services
@@ -20,5 +21,6 @@ namespace LangTrainerServices.Services
 
         void Save();
 
+        PartOfSpeech GetPartOfSpeech(string name, Guid languageId);
     }
 }

@@ -17,5 +17,7 @@ namespace LangTrainerEntity.Entities
         public TrainingGroup Group { get; set; }
 
         public Guid GroupId { get; set; }
+
+        public DateTime AddTime { get; set; }
     }
 }

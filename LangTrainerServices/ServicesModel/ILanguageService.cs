@@ -1,6 +1,7 @@
 ﻿
 
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Lang;
 
 namespace LangTrainerServices.Services
 {
@@ -11,5 +12,8 @@ namespace LangTrainerServices.Services
         List<Language> GetTranslateLanguages();
 
         Language GetLanguage(string name);
+
+        PartOfSpeech GetPartOfSpeech(string name, Guid languageId);
+
     }
 }

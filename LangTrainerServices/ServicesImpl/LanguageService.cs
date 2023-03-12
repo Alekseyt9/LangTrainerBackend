@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Concurrent;
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Lang;
 using LangTrainerServices.Services;
 
 namespace LangTrainerServices.Impl
@@ -27,6 +28,11 @@ namespace LangTrainerServices.Impl
                 }
             }
             return _langMap[name];
+        }
+
+        public PartOfSpeech GetPartOfSpeech(string name, Guid languageId)
+        {
+            return _repository.GetPartOfSpeech(name, languageId);
         }
 
         public List<Language> GetLanguages()

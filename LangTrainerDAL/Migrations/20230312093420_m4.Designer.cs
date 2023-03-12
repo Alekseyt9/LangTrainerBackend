@@ -3,6 +3,7 @@ using System;
 using LangTrainerDAL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LangTrainerDAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230312093420_m4")]
+    partial class m4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,8 +203,8 @@ namespace LangTrainerDAL.Migrations
                     b.Property<Guid>("LanguageId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("PartOfSpeechId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("PartOfSpeech")
+                        .HasColumnType("text");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -213,8 +216,6 @@ namespace LangTrainerDAL.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("PartOfSpeechId");
-
                     b.ToTable("Translate");
                 });
 
@@ -223,9 +224,6 @@ namespace LangTrainerDAL.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
-
-                    b.Property<DateTime>("AddTime")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uuid");
@@ -285,79 +283,8 @@ namespace LangTrainerDAL.Migrations
                             Id = new Guid("98d48c5d-a10f-4704-9c08-949fe791cf4d"),
                             Email = "-",
                             Login = "admin",
-                            PassSalt = new byte[] { 197, 9, 49, 243, 213, 215, 45, 163, 98, 2, 27, 10, 165, 177, 209, 11, 94, 124, 40, 88, 7, 224, 3, 227, 242, 152, 235, 37, 207, 217, 130, 208, 86, 239, 185, 147, 76, 12, 121, 50, 63, 165, 231, 173, 162, 105, 177, 20, 148, 141, 40, 64, 105, 229, 165, 106, 223, 16, 21, 52, 130, 26, 74, 24 },
-                            PasswordHash = "057F246B8A85F9F668C80602BF05DA0E984C2C859D550B78556976780B431474DB0F9D18D564E2367078FAEECCFFFE0AF6632F6381EEDAC5E044969A77401A2D"
-                        });
-                });
-
-            modelBuilder.Entity("LangTrainerModel.Entities.Lang.PartOfSpeech", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("LanguageId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId", "Name")
-                        .IsUnique();
-
-                    b.ToTable("PartOfSpeech");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("4b8b1b37-2696-466b-a053-c5a2f4f5c1a3"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "noun"
-                        },
-                        new
-                        {
-                            Id = new Guid("8f281ed9-fb46-49c4-88c7-0c00d304b2cb"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "pronoun"
-                        },
-                        new
-                        {
-                            Id = new Guid("fd0049c4-f203-44bf-ae8c-1679a81de1d4"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "verb"
-                        },
-                        new
-                        {
-                            Id = new Guid("3ec5b5bb-baed-4135-853e-23cbf14cea68"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "adjective"
-                        },
-                        new
-                        {
-                            Id = new Guid("b78304b8-70fa-475c-8898-a7d5c8f48a66"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "adverb"
-                        },
-                        new
-                        {
-                            Id = new Guid("ca7cf798-0015-42b1-bf47-d450da865b75"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "preposition"
-                        },
-                        new
-                        {
-                            Id = new Guid("eea3308f-90eb-43de-815f-15f3b3dc8a22"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "conjunction"
-                        },
-                        new
-                        {
-                            Id = new Guid("571a9fdb-f2db-4e55-acaf-3670db7153eb"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "interjection"
+                            PassSalt = new byte[] { 79, 223, 227, 216, 147, 6, 131, 149, 196, 164, 65, 135, 161, 44, 65, 56, 202, 105, 7, 126, 55, 107, 49, 182, 194, 208, 210, 106, 102, 189, 25, 74, 42, 234, 111, 122, 26, 126, 16, 218, 121, 105, 26, 30, 193, 141, 20, 220, 197, 165, 223, 115, 105, 137, 86, 41, 183, 251, 58, 249, 255, 25, 145, 2 },
+                            PasswordHash = "DA8011B71FC59E71DAA35FE017C3A255446CACF4EBC74A416835E54F4326D8442DAF9D83840492449F40793087FD8E74C679238515E665F27FB9F83E0C179996"
                         });
                 });
 
@@ -444,17 +371,9 @@ namespace LangTrainerDAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LangTrainerModel.Entities.Lang.PartOfSpeech", "PartOfSpeech")
-                        .WithMany()
-                        .HasForeignKey("PartOfSpeechId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Expression");
 
                     b.Navigation("Language");
-
-                    b.Navigation("PartOfSpeech");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.TranslateInGroup", b =>
@@ -482,17 +401,6 @@ namespace LangTrainerDAL.Migrations
                     b.Navigation("TrainingInfo");
 
                     b.Navigation("Translate");
-                });
-
-            modelBuilder.Entity("LangTrainerModel.Entities.Lang.PartOfSpeech", b =>
-                {
-                    b.HasOne("LangTrainerEntity.Entities.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("LangTrainerModel.Entities.Training.UserSettings", b =>

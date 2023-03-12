@@ -1,4 +1,6 @@
-﻿namespace LangTrainerEntity.Entities
+﻿using LangTrainerModel.Entities.Lang;
+
+namespace LangTrainerEntity.Entities
 {
     /// <summary>
     /// Перевод. Если на тот же язык - то определение 
@@ -8,6 +10,10 @@
         public Guid Id { get; set; }
 
         public string Text { get; set; }
+
+        public PartOfSpeech PartOfSpeech { get; set; }
+
+        public Guid PartOfSpeechId { get; set; }
 
         public Language Language { get; set; }
 

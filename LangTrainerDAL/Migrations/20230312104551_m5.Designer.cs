@@ -3,6 +3,7 @@ using System;
 using LangTrainerDAL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LangTrainerDAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230312104551_m5")]
+    partial class m5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,8 +288,8 @@ namespace LangTrainerDAL.Migrations
                             Id = new Guid("98d48c5d-a10f-4704-9c08-949fe791cf4d"),
                             Email = "-",
                             Login = "admin",
-                            PassSalt = new byte[] { 197, 9, 49, 243, 213, 215, 45, 163, 98, 2, 27, 10, 165, 177, 209, 11, 94, 124, 40, 88, 7, 224, 3, 227, 242, 152, 235, 37, 207, 217, 130, 208, 86, 239, 185, 147, 76, 12, 121, 50, 63, 165, 231, 173, 162, 105, 177, 20, 148, 141, 40, 64, 105, 229, 165, 106, 223, 16, 21, 52, 130, 26, 74, 24 },
-                            PasswordHash = "057F246B8A85F9F668C80602BF05DA0E984C2C859D550B78556976780B431474DB0F9D18D564E2367078FAEECCFFFE0AF6632F6381EEDAC5E044969A77401A2D"
+                            PassSalt = new byte[] { 133, 10, 64, 150, 104, 40, 68, 131, 123, 160, 201, 62, 245, 119, 186, 212, 115, 190, 211, 225, 39, 186, 218, 129, 26, 235, 169, 165, 151, 227, 119, 240, 100, 23, 24, 180, 169, 46, 96, 139, 112, 86, 29, 187, 196, 179, 110, 229, 171, 220, 133, 18, 191, 100, 177, 158, 89, 243, 224, 59, 19, 21, 98, 172 },
+                            PasswordHash = "007954B33EF6D282CBBB883DE8D1903477AE7DA810965D29AB2C13940A924B4B99724A8DE3DD007D658FD2677AC43A6400D1C1D0F2153673E5881268FE010187"
                         });
                 });
 
@@ -305,60 +308,9 @@ namespace LangTrainerDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LanguageId", "Name")
-                        .IsUnique();
+                    b.HasIndex("LanguageId");
 
                     b.ToTable("PartOfSpeech");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("4b8b1b37-2696-466b-a053-c5a2f4f5c1a3"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "noun"
-                        },
-                        new
-                        {
-                            Id = new Guid("8f281ed9-fb46-49c4-88c7-0c00d304b2cb"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "pronoun"
-                        },
-                        new
-                        {
-                            Id = new Guid("fd0049c4-f203-44bf-ae8c-1679a81de1d4"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "verb"
-                        },
-                        new
-                        {
-                            Id = new Guid("3ec5b5bb-baed-4135-853e-23cbf14cea68"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "adjective"
-                        },
-                        new
-                        {
-                            Id = new Guid("b78304b8-70fa-475c-8898-a7d5c8f48a66"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "adverb"
-                        },
-                        new
-                        {
-                            Id = new Guid("ca7cf798-0015-42b1-bf47-d450da865b75"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "preposition"
-                        },
-                        new
-                        {
-                            Id = new Guid("eea3308f-90eb-43de-815f-15f3b3dc8a22"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "conjunction"
-                        },
-                        new
-                        {
-                            Id = new Guid("571a9fdb-f2db-4e55-acaf-3670db7153eb"),
-                            LanguageId = new Guid("2f8444bc-096b-40c4-ae15-3cc1858a0d27"),
-                            Name = "interjection"
-                        });
                 });
 
             modelBuilder.Entity("LangTrainerModel.Entities.Training.UserSettings", b =>

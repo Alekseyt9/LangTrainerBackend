@@ -1,6 +1,7 @@
 ﻿
 using LangTrainerDAL.EntityConfigurations;
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Lang;
 using LangTrainerModel.Entities.Training;
 using LangTrainerServices.Helpers;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ namespace LangTrainerDAL.Services
 
         public DbSet<UserSettings> UserSettings { get; set; }
 
+        public DbSet<PartOfSpeech> PartOfSpeech { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) 
             : base(options)
         {
@@ -38,6 +41,7 @@ namespace LangTrainerDAL.Services
             modelBuilder.ApplyConfiguration(new TrainingGroupConfig());
             modelBuilder.ApplyConfiguration(new TranslateInGroupConfig());
             modelBuilder.ApplyConfiguration(new TrainingInfoConfig());
+            modelBuilder.ApplyConfiguration(new PartOfSpeechConfig());
 
             InitData(modelBuilder);
 
@@ -84,6 +88,61 @@ namespace LangTrainerDAL.Services
 
             modelBuilder.Entity<User>().HasData(
                 new List<User>() { GetAdminUserForInit() }
+            );
+
+            //noun, pronoun, verb, adjective, adverb, preposition, conjunction, interjection
+            modelBuilder.Entity<PartOfSpeech>().HasData(
+                new List<PartOfSpeech>()
+                {
+                    new()
+                    {
+                        Id = Guid.Parse("4B8B1B37-2696-466B-A053-C5A2F4F5C1A3"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "noun"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("8F281ED9-FB46-49C4-88C7-0C00D304B2CB"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "pronoun"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("FD0049C4-F203-44BF-AE8C-1679A81DE1D4"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "verb"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("3EC5B5BB-BAED-4135-853E-23CBF14CEA68"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "adjective"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("B78304B8-70FA-475C-8898-A7D5C8F48A66"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "adverb"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("CA7CF798-0015-42B1-BF47-D450DA865B75"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "preposition"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("EEA3308F-90EB-43DE-815F-15F3B3DC8A22"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "conjunction"
+                    },
+                    new()
+                    {
+                        Id = Guid.Parse("571A9FDB-F2DB-4E55-ACAF-3670DB7153EB"),
+                        LanguageId = Guid.Parse("2F8444BC-096B-40C4-AE15-3CC1858A0D27"),
+                        Name = "interjection"
+                    },
+                }
             );
         }
 

@@ -8,8 +8,6 @@ namespace LangTrainerEntity.Entities
 
         public string Text { get; set; }
 
-        public string PartOfSpeech { get; set; }
-
         public ICollection<Translate> Translates { get; set; } = new HashSet<Translate>();
 
         public ICollection<Sound> Sounds { get; set; } = new List<Sound>();

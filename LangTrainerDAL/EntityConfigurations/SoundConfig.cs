@@ -13,6 +13,7 @@ namespace LangTrainerDAL.EntityConfigurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Data).IsRequired();
+            builder.Property(x => x.ExpressionId).IsRequired();
 
             builder.HasOne(x => x.Expression)
                 .WithMany(x => x.Sounds).HasForeignKey(x => x.ExpressionId);

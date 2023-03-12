@@ -35,8 +35,18 @@ namespace LangTrainerServices.Impl.DataFillers
 
         private void LoadTranslates(DataLoaderContext ctx, HtmlDocument doc, Expression expr)
         {
-            var meanNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'dsense')]");
+            var wordNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'entry-body__el')]");
+            if (wordNode == null)
+            {
+                return;
+            }
 
+            var partNode = wordNode.SelectSingleNode(".//span[contains(@class, 'pos dpos')]");
+            var pos = partNode.InnerText;
+
+            var posObj = ctx.LanguageService.GetPartOfSpeech(pos, ctx.LanguageService.GetLanguage("english").Id);
+
+            var meanNode = wordNode.SelectSingleNode(".//div[contains(@class, 'dsense')]");
             if (meanNode == null)
             {
                 return;
@@ -46,7 +56,8 @@ namespace LangTrainerServices.Impl.DataFillers
             var tr = new Translate()
             {
                 Language = ctx.LanguageService.GetLanguage("english"),
-                Text = GetText(defNode)
+                Text = GetText(defNode),
+                PartOfSpeech = posObj
             };
             expr.Translates.Add(tr);
 
