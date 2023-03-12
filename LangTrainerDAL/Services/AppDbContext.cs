@@ -1,6 +1,7 @@
 ﻿
 using LangTrainerDAL.EntityConfigurations;
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Training;
 using LangTrainerServices.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,8 @@ namespace LangTrainerDAL.Services
         public DbSet<Language> Languages { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<UserSettings> UserSettings { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) 
             : base(options)

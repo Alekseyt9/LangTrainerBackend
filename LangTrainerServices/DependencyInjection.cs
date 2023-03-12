@@ -26,6 +26,7 @@ namespace LangTrainerServies
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IJWTManager, JWTManager>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ISettingsService, SettingsService>();
         }
 
     }

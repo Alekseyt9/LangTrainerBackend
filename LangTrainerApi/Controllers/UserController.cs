@@ -1,8 +1,11 @@
 ﻿
 using LangTrainerClientModel.Model.User;
 using LangTrainerServices.Services;
+using LangTrainerServices.ServicesModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using LangTrainerFrontendWinForms.Services;
 
 namespace LangTrainerAPI.Controllers
 {
@@ -12,10 +15,18 @@ namespace LangTrainerAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IJWTManager _jWTManager;
+        private readonly ISettingsService _settingsService;
+        private readonly IAppRepository _repository;
 
-        public UserController(IJWTManager jWTManager)
+        public UserController(
+            IJWTManager jWTManager, 
+            ISettingsService settingsService,
+            IAppRepository repository
+            )
         {
             _jWTManager = jWTManager ?? throw new ArgumentNullException(nameof(jWTManager));
+            _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [AllowAnonymous]
@@ -46,6 +57,30 @@ namespace LangTrainerAPI.Controllers
         public IAsyncResult PasswordChange()
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [Route("GetSettings")]
+        public ActionResult<Settings> GetSettings()
+        {
+            var userId = GetCurrentUserId();
+            return _settingsService.LoadUserSettings(userId);
+        }
+
+        [HttpPost]
+        [Route("SetSettings")]
+        public IActionResult SetSettings([FromBody] Settings settings)
+        {
+            var userId = GetCurrentUserId();
+            _settingsService.SaveUserSettings(userId, settings);
+            return NoContent();
+        }
+
+        private Guid GetCurrentUserId()
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            return _repository.GetUser(userId).Id;
         }
 
     }

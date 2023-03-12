@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Training;
 
 namespace LangTrainerServices.Services
 {
@@ -13,7 +14,11 @@ namespace LangTrainerServices.Services
 
         List<Language> GetLanguages();
 
-        ICollection<User> GetUsers(string login);
+        User GetUser(string login);
+
+        UserSettings GetUserSettings(Guid userId);
+
+        void Save();
 
     }
 }

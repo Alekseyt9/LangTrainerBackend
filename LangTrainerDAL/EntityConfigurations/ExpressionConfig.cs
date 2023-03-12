@@ -16,6 +16,10 @@ namespace LangTrainerDAL.EntityConfigurations
 
             builder.HasOne<Language>(x => x.Language)
                 .WithMany().HasForeignKey(x => x.LanguageId);
+
+            builder
+                .HasIndex(p => new { p.Text, p.PartOfSpeech, p.LanguageId }).IsUnique();
+
         }
 
     }

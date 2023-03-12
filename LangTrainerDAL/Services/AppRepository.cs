@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Training;
 using LangTrainerServices.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,7 @@ namespace LangTrainerDAL.Services
 {
     internal class AppRepository : IAppRepository
     {
-        private AppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
         public AppRepository(AppDbContext dbContext)
         {
@@ -43,9 +44,25 @@ namespace LangTrainerDAL.Services
             return _dbContext.Languages.ToList();
         }
 
-        public ICollection<User> GetUsers(string login)
+        public User GetUser(string login)
         {
-            return _dbContext.Users.Where(x => x.Login == login).ToList();
+            return _dbContext.Users.FirstOrDefault(x => x.Login == login);
+        }
+
+        public UserSettings GetUserSettings(Guid userId)
+        {
+            var record = _dbContext.UserSettings.FirstOrDefault(x => x.UserId == userId);
+            if (record == null)
+            {
+                record = _dbContext.UserSettings.Add(new UserSettings() { UserId = userId }).Entity;
+            }
+
+            return record;
+        }
+
+        public void Save()
+        {
+            _dbContext.SaveChanges();
         }
 
     }

@@ -22,7 +22,7 @@ namespace LangTrainerServices.ServicesImpl
 
         public TokensAuth Authenticate(UserAuth userAuth)
         {
-            if (!_repository.GetUsers(userAuth.Login).Any())
+            if (_repository.GetUser(userAuth.Login) == null)
             {
                 return null;
             }
