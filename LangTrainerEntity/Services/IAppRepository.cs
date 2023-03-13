@@ -19,8 +19,15 @@ namespace LangTrainerServices.Services
 
         UserSettings GetUserSettings(Guid userId);
 
+        TrainingGroup GetDefaultTrainingGroup(Guid userId);
+
+        TranslateInGroup GetTranslateInGroup(Guid groupId, Guid translateId);
+
         void Save();
 
         PartOfSpeech GetPartOfSpeech(string name, Guid languageId);
+
+        Translate GetTranslate(Guid translateId);
+
     }
 }

@@ -4,30 +4,27 @@ using LangTrainerServices.Services;
 using LangTrainerServices.ServicesModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using LangTrainerClientModel.Model;
 using LangTrainerClientModel.Model.Settings;
 
 namespace LangTrainerAPI.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IJWTManager _jWTManager;
         private readonly ISettingsService _settingsService;
-        private readonly IAppRepository _repository;
 
         public UserController(
-            IJWTManager jWTManager, 
+            IJWTManager jWTManager,
             ISettingsService settingsService,
             IAppRepository repository
-            )
+        ) : base(repository)
         {
             _jWTManager = jWTManager ?? throw new ArgumentNullException(nameof(jWTManager));
             _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [AllowAnonymous]
@@ -75,13 +72,6 @@ namespace LangTrainerAPI.Controllers
             var userId = GetCurrentUserId();
             _settingsService.SaveUserSettings(userId, model.Data);
             return NoContent();
-        }
-
-        private Guid GetCurrentUserId()
-        {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            return _repository.GetUser(userId).Id;
         }
 
     }

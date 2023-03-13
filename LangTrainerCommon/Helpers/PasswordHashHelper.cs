@@ -22,10 +22,10 @@ namespace LangTrainerServices.Helpers
             return Convert.ToHexString(hash);
         }
 
-        public static bool VerifyPassword(string password, string hash, string saltStr)
+        public static bool VerifyPassword(string password, string hash, byte[] salt)
         {
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
-                password, Encoding.UTF8.GetBytes(saltStr), iterations, hashAlgorithm, keySize);
+                password, salt, iterations, hashAlgorithm, keySize);
             return hashToCompare.SequenceEqual(Convert.FromHexString(hash));
         }
 

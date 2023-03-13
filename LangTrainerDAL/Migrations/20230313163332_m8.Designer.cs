@@ -3,6 +3,7 @@ using System;
 using LangTrainerDAL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LangTrainerDAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230313163332_m8")]
+    partial class m8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,7 +181,12 @@ namespace LangTrainerDAL.Migrations
                     b.Property<int>("Stage")
                         .HasColumnType("integer");
 
+                    b.Property<Guid>("TranslateInGroupId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TranslateInGroupId");
 
                     b.ToTable("TrainingInfo");
                 });
@@ -210,7 +218,7 @@ namespace LangTrainerDAL.Migrations
 
                     b.HasIndex("PartOfSpeechId");
 
-                    b.ToTable("Translates");
+                    b.ToTable("Translate");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.TranslateInGroup", b =>
@@ -280,8 +288,8 @@ namespace LangTrainerDAL.Migrations
                             Id = new Guid("98d48c5d-a10f-4704-9c08-949fe791cf4d"),
                             Email = "-",
                             Login = "admin",
-                            PassSalt = new byte[] { 183, 120, 247, 142, 9, 213, 196, 215, 223, 75, 171, 159, 198, 91, 83, 226, 131, 200, 85, 240, 253, 26, 24, 215, 68, 162, 153, 55, 54, 114, 117, 199, 55, 81, 82, 108, 245, 122, 234, 38, 29, 150, 11, 9, 150, 228, 171, 182, 112, 198, 224, 245, 81, 32, 207, 208, 76, 157, 81, 86, 129, 201, 194, 40 },
-                            PasswordHash = "B85053CA661F851BBDE56412C377AEC6D797850425A097D4CB3A3963C3EA396849EC3EDEFE76D90E23207BA2162AA6072EEA1C02244B30D372553E58BE08E21D"
+                            PassSalt = new byte[] { 245, 221, 95, 20, 21, 192, 17, 56, 147, 226, 185, 54, 216, 17, 37, 128, 35, 135, 106, 73, 172, 138, 182, 121, 146, 83, 34, 116, 35, 180, 66, 95, 149, 164, 163, 23, 202, 125, 57, 119, 52, 52, 89, 28, 226, 126, 21, 85, 27, 158, 111, 52, 165, 254, 27, 164, 84, 41, 76, 54, 74, 197, 53, 233 },
+                            PasswordHash = "EC36C360E0B4AE5B57091C83493D80F274C2420FDFC6D4A1517054DC22A80F331DBD78D7FEE2FDA6C9AC8EF78DD026A1AA5F83EBEB3BD87EE773BF61E87EC9CE"
                         });
                 });
 
@@ -412,6 +420,17 @@ namespace LangTrainerDAL.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LangTrainerEntity.Entities.TrainingInfo", b =>
+                {
+                    b.HasOne("LangTrainerEntity.Entities.TranslateInGroup", "TranslateInGroup")
+                        .WithMany()
+                        .HasForeignKey("TranslateInGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TranslateInGroup");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.Translate", b =>

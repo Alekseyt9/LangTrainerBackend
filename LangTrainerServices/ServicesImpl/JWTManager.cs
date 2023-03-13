@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using LangTrainerClientModel.Model.User;
+using LangTrainerServices.Helpers;
 using LangTrainerServices.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -22,7 +23,13 @@ namespace LangTrainerServices.ServicesImpl
 
         public TokensAuth Authenticate(UserAuth userAuth)
         {
-            if (_repository.GetUser(userAuth.Login) == null)
+            var user = _repository.GetUser(userAuth.Login);
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (!PasswordHashHelper.VerifyPassword(userAuth.Password, user.PasswordHash, user.PassSalt))
             {
                 return null;
             }

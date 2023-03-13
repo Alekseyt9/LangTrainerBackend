@@ -15,7 +15,7 @@ namespace LangTrainerDAL.EntityConfigurations
             builder.Property(x => x.UserId).IsRequired();
 
             builder.HasOne(x => x.User)
-                .WithMany().HasForeignKey(x => x.UserId);
+                .WithMany(x => x.TrainingGroups).HasForeignKey(x => x.UserId);
         }
 
     }

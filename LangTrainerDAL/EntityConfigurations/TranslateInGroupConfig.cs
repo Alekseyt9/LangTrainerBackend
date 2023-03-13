@@ -20,7 +20,7 @@ namespace LangTrainerDAL.EntityConfigurations
             builder.HasOne(x => x.Translate)
                 .WithMany().HasForeignKey(x => x.TranslateId);
             builder.HasOne(x => x.Group)
-                .WithMany().HasForeignKey(x => x.GroupId);
+                .WithMany(x => x.Translates).HasForeignKey(x => x.GroupId);
             builder.HasOne(x => x.TrainingInfo)
                 .WithMany().HasForeignKey(x => x.TrainingInfoId);
         }

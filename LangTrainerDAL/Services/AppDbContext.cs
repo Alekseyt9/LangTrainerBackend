@@ -11,7 +11,7 @@ namespace LangTrainerDAL.Services
 {
     public class AppDbContext : DbContext
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public DbSet<Expression> Expressions { get; set; }
 
@@ -22,6 +22,12 @@ namespace LangTrainerDAL.Services
         public DbSet<UserSettings> UserSettings { get; set; }
 
         public DbSet<PartOfSpeech> PartOfSpeech { get; set; }
+
+        public DbSet<TrainingGroup> TrainingGroups { get; set; }
+
+        public DbSet<TranslateInGroup> TranslateInGroup { get; set; }
+
+        public DbSet<Translate> Translates { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) 
             : base(options)

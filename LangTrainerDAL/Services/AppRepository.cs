@@ -61,6 +61,28 @@ namespace LangTrainerDAL.Services
             return record;
         }
 
+        public TrainingGroup GetDefaultTrainingGroup(Guid userId)
+        {
+            var group = _dbContext.TrainingGroups.FirstOrDefault(x => x.UserId == userId);
+            if (group == null)
+            {
+                group = new TrainingGroup()
+                {
+                    Name = "default",
+                    UserId = userId
+                };
+                _dbContext.TrainingGroups.Add(group);
+            }
+
+            return group;
+        }
+
+        public TranslateInGroup GetTranslateInGroup(Guid groupId, Guid translateId)
+        {
+            return _dbContext.TranslateInGroup
+                .FirstOrDefault(x => x.GroupId == groupId && x.TranslateId == translateId);
+        }
+
         public void Save()
         {
             _dbContext.SaveChanges();
@@ -70,6 +92,11 @@ namespace LangTrainerDAL.Services
         {
             return _dbContext.PartOfSpeech
                 .FirstOrDefault(x => x.LanguageId == languageId && x.Name == name);
+        }
+
+        public Translate GetTranslate(Guid translateId)
+        {
+            return _dbContext.Translates.First(x => x.Id == translateId);
         }
 
     }

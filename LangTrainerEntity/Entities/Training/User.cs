@@ -1,5 +1,7 @@
 ﻿
 
+using LangTrainerModel.Entities.Training;
+
 namespace LangTrainerEntity.Entities
 {
     public class User
@@ -13,6 +15,8 @@ namespace LangTrainerEntity.Entities
         public byte[] PassSalt { get; set; }
 
         public string PasswordHash { get; set; }
+
+        public ICollection<TrainingGroup> TrainingGroups { get; set; } = new List<TrainingGroup>();
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using LangTrainerEntity.Entities;
+using LangTrainerModel.Entities.Training;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +21,11 @@ namespace LangTrainerDAL.EntityConfigurations
 
             builder.Property(x => x.PasswordHash).IsRequired();
             builder.Property(x => x.PassSalt).IsRequired();
+
+            /*
+            builder.HasOne<UserSettings>(x => x.Settings)
+                .WithMany().HasForeignKey(x => x.SettingsId);
+            */
         }
 
     }

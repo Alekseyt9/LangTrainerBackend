@@ -3,6 +3,7 @@ using System;
 using LangTrainerDAL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LangTrainerDAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230313174318_m9")]
+    partial class m9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,7 +213,7 @@ namespace LangTrainerDAL.Migrations
 
                     b.HasIndex("PartOfSpeechId");
 
-                    b.ToTable("Translates");
+                    b.ToTable("Translate");
                 });
 
             modelBuilder.Entity("LangTrainerEntity.Entities.TranslateInGroup", b =>
@@ -280,8 +283,8 @@ namespace LangTrainerDAL.Migrations
                             Id = new Guid("98d48c5d-a10f-4704-9c08-949fe791cf4d"),
                             Email = "-",
                             Login = "admin",
-                            PassSalt = new byte[] { 183, 120, 247, 142, 9, 213, 196, 215, 223, 75, 171, 159, 198, 91, 83, 226, 131, 200, 85, 240, 253, 26, 24, 215, 68, 162, 153, 55, 54, 114, 117, 199, 55, 81, 82, 108, 245, 122, 234, 38, 29, 150, 11, 9, 150, 228, 171, 182, 112, 198, 224, 245, 81, 32, 207, 208, 76, 157, 81, 86, 129, 201, 194, 40 },
-                            PasswordHash = "B85053CA661F851BBDE56412C377AEC6D797850425A097D4CB3A3963C3EA396849EC3EDEFE76D90E23207BA2162AA6072EEA1C02244B30D372553E58BE08E21D"
+                            PassSalt = new byte[] { 252, 254, 103, 126, 80, 204, 32, 113, 226, 74, 183, 129, 76, 147, 96, 96, 111, 122, 147, 223, 84, 0, 201, 228, 143, 160, 111, 189, 1, 149, 109, 89, 122, 250, 210, 90, 112, 110, 198, 13, 146, 155, 236, 2, 101, 92, 205, 143, 251, 72, 28, 189, 65, 35, 148, 186, 32, 143, 118, 182, 47, 160, 115, 23 },
+                            PasswordHash = "2DDBE07D9785A8D2B060F965E1A47FC3F8DB1C45C4CA8C50D8748A6D16991E6225306D371C9A26A721743D1E67C258914D8960C7949BE28C4DFB4B11DFB575CB"
                         });
                 });
 

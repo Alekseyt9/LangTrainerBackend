@@ -12,9 +12,5 @@ namespace LangTrainerEntity.Entities
 
         public int Stage { get; set; }
 
-        public Guid TranslateInGroupId { get; set; }
-
-        public TranslateInGroup TranslateInGroup { get; set; }
-
     }
 }

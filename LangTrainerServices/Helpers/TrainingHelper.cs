@@ -6,6 +6,7 @@ namespace LangTrainerServices.Helpers
 {
     public static class TrainingHelper
     {
+        /*
         public static ICollection<TrainingInfo> TrainingNextStage(
             ICollection<TrainingInfo> trInfos, TrainingResult tRes)
         {
@@ -48,7 +49,7 @@ namespace LangTrainerServices.Helpers
                 Stage = ti.Stage,
             };
 
-        }
+        }*/
 
     }
 }

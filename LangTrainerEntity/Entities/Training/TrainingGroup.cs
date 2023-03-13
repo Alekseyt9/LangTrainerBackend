@@ -12,5 +12,7 @@ namespace LangTrainerEntity.Entities
 
         public Guid UserId { get; set; }
 
+        public ICollection<TranslateInGroup> Translates { get; set; } = new List<TranslateInGroup>();
+
     }
 }
