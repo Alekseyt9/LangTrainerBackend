@@ -37,7 +37,6 @@ namespace LangTrainerAPI.Controllers
                 TrainingInfo = new TrainingInfo(),
                 Translate = tr
             };
-            //trInGroup.TrainingInfo.TranslateInGroup = trInGroup;
 
             gr.Translates.Add(trInGroup);
             Repository.Save();
@@ -47,9 +46,13 @@ namespace LangTrainerAPI.Controllers
 
         [HttpGet]
         [Route("GetTranslatesList")]
-        public ActionResult<TrainingList> GetTranslatesList()
+        public ActionResult<ICollection<TrainingListItem>> GetTranslatesList()
         {
-            return NoContent();
+            var res = new List<TrainingListItem>();
+
+            
+
+            return res;
         }
 
         [HttpDelete]

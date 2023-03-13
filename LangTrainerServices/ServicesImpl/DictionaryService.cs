@@ -55,7 +55,11 @@ namespace LangTrainerServices.Impl
                 res.Items.Add(new FindItem()
                 {
                     Expression = expr.Text,
-                    Translates = trs
+                    Translates = trs,
+                    Sounds = expr.Sounds.Select(x => new FindItemSound()
+                    {
+                        Data = Convert.ToBase64String(x.Data)
+                    }).ToList() 
                 });
             }
 
