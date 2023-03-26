@@ -4,7 +4,7 @@ using System.Security.Claims;
 
 namespace LangTrainerAPI.Controllers
 {
-    public class BaseController : ControllerBase
+    public class BaseController : Controller
     {
         private readonly IAppRepository _repository;
 
@@ -19,6 +19,10 @@ namespace LangTrainerAPI.Controllers
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            if (userId == null)
+            {
+                throw new Exception("null claim");
+            }
             return _repository.GetUser(userId).Id;
         }
 

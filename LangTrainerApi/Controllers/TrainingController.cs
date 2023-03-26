@@ -25,7 +25,7 @@ namespace LangTrainerAPI.Controllers
             var founded = Repository.GetTranslateInGroup(gr.Id, model.TranslateId);
             if (founded != null)
             {
-                throw new Exception("The word has already been added to your list");
+                return BadRequest("The word has already been added to your list");
             }
 
             var tr = Repository.GetTranslate(model.TranslateId);

@@ -93,7 +93,7 @@ namespace LangTrainerDAL.Services
             );
 
             modelBuilder.Entity<User>().HasData(
-                new List<User>() { GetAdminUserForInit() }
+                new List<User>() { GetAdminUserForInit(), GetTestUserForInit() }
             );
 
             //noun, pronoun, verb, adjective, adverb, preposition, conjunction, interjection
@@ -150,6 +150,21 @@ namespace LangTrainerDAL.Services
                     },
                 }
             );
+        }
+
+        public User GetTestUserForInit()
+        {
+            var pass = "test";
+            byte[] salt;
+            var hash = PasswordHashHelper.HashPasword(pass, out salt);
+            return new User()
+            {
+                Login = "test",
+                PasswordHash = hash,
+                PassSalt = salt,
+                Email = "alekseyt9@gmail.com",
+                Id = Guid.Parse("E3DB5E30-1C0E-432C-920D-7160D71F8D35")
+            };
         }
 
         public User GetAdminUserForInit()

@@ -30,10 +30,6 @@ namespace LangTrainerServices.Impl
         public FindResult FindExpressions(FindModel model)
         {
             var exprs = _repository.FindExpressions(model.SearchString, model.LanguageId);
-            if (exprs == null)
-            {
-                return null;
-            }
 
             var res = new FindResult()
             {

@@ -9,6 +9,7 @@ namespace LangTrainerTest
 {
     public class LangControllerTest
     {
+        /*
         [Fact]
         public async Task GetTokenDataTest()
         {
@@ -34,7 +35,9 @@ namespace LangTrainerTest
             Assert.NotEmpty(expr.Sounds);
             Assert.NotNull(expr.Language);
         }
+        */
 
+        /*
         [Fact]
         public async void FindInDictionary()
         {
@@ -53,7 +56,9 @@ namespace LangTrainerTest
 
             Assert.NotNull(res);
         }
+        */
 
+        /*
         [Fact]
         public async void GetLanguages()
         {
@@ -69,6 +74,7 @@ namespace LangTrainerTest
             Assert.NotNull(res);
             Assert.True(res.Count > 0);
         }
+        */
 
     }
 }

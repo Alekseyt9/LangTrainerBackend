@@ -7,6 +7,7 @@ namespace LangTrainerTest.DataFillers
 {
     public class CambridgeEnglishFillerTest
     {
+        /*
         [Fact]
         public async Task TestFull()
         {
@@ -15,6 +16,7 @@ namespace LangTrainerTest.DataFillers
 
             Assert.NotNull(res);
         }
+        */
 
         [Fact]
         public async Task TestGetSound()

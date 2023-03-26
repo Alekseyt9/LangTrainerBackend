@@ -19,7 +19,7 @@ namespace LangTrainerDAL.Services
         public ICollection<Expression> FindExpressions(string str, Guid? languageId)
         {
             return _dbContext.Expressions
-                .Where(x => EF.Functions.Like(x.Text, $"%{str}%"))
+                .Where(x => EF.Functions.Like(x.Text, $"%{str}%") && x.LanguageId == languageId)
                 .Include(x => x.Language)
                 .Include(x=> x.Sounds)
                 .Include(x => x.Translates)

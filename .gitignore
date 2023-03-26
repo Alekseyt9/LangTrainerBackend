@@ -29,3 +29,8 @@
 /LangTrainerCommon/obj
 /LangTrainerTests/.vs/ProjectEvaluation
 /LangTrainerTests/.vs/LangTrainerTests/v17
+/LangTrainerClientModel/bin/Release/net7.0
+/LangTrainerClientModel/obj/Release/net7.0
+/LangTrainerCommon/bin/Release/net7.0
+/LangTrainerEntity/bin/Release/net7.0
+/*.user

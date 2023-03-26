@@ -11,12 +11,14 @@ namespace LangTrainerAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class DictionaryController
+    public class DictionaryController : BaseController
     {
         private readonly IDictionaryService _dictionaryService;
         private readonly ILanguageService _languageService; 
 
-        public DictionaryController(IDictionaryService service, ILanguageService languageService)
+        public DictionaryController(
+            IDictionaryService service, ILanguageService languageService,
+            IAppRepository repository) : base(repository)
         {
             _dictionaryService = service ?? throw new ArgumentNullException(nameof(service));
             _languageService = languageService ?? throw new ArgumentNullException(nameof(languageService));
@@ -32,6 +34,11 @@ namespace LangTrainerAPI.Controllers
         [HttpGet("FindInDictionary")]
         public ActionResult<FindResult> FindInDictionary([FromQuery]FindModel model)
         {
+            if (!model.LanguageId.HasValue)
+            {
+                return BadRequest("LanguageId");
+            }
+
             var res = _dictionaryService.FindExpressions(model);
             return res;
         }

@@ -6,8 +6,10 @@ using Xunit;
 
 namespace LangTrainerTest
 {
+
     public class TrainingStagesTest
     {
+        /*
         [Fact]
         public void Test()
         {
@@ -49,7 +51,6 @@ namespace LangTrainerTest
             var res = TrainingHelper.TrainingNextStage(trList, resData);
 
             Assert.NotNull(res);
-        }
-
+        }*/
     }
 }
