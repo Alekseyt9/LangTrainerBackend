@@ -159,7 +159,6 @@ namespace LangTrainerDAL.Services
             var hash = PasswordHashHelper.HashPasword(pass, out salt);
             return new User()
             {
-                Login = "test",
                 PasswordHash = hash,
                 PassSalt = salt,
                 Email = "alekseyt9@gmail.com",
@@ -174,10 +173,9 @@ namespace LangTrainerDAL.Services
             var hash = PasswordHashHelper.HashPasword(pass, out salt);
             return new User()
             {
-                Login = "admin",
                 PasswordHash = hash,
                 PassSalt = salt,
-                Email = "-",
+                Email = "admin",
                 Id = Guid.Parse("98D48C5D-A10F-4704-9C08-949FE791CF4D")
             };
         }

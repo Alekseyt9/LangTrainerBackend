@@ -15,7 +15,9 @@ namespace LangTrainerServices.Services
 
         List<Language> GetLanguages();
 
-        User GetUser(string login);
+        User GetUser(string email);
+
+        void AddUser(User user);
 
         UserSettings GetUserSettings(Guid userId);
 

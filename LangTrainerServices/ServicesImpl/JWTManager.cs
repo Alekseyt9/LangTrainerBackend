@@ -23,7 +23,7 @@ namespace LangTrainerServices.ServicesImpl
 
         public TokensAuth Authenticate(UserAuth userAuth)
         {
-            var user = _repository.GetUser(userAuth.Login);
+            var user = _repository.GetUser(userAuth.Email);
             if (user == null)
             {
                 return null;
@@ -40,7 +40,7 @@ namespace LangTrainerServices.ServicesImpl
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, userAuth.Login)
+                    new Claim(ClaimTypes.Name, userAuth.Email)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(

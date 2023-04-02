@@ -45,9 +45,15 @@ namespace LangTrainerDAL.Services
             return _dbContext.Languages.ToList();
         }
 
-        public User GetUser(string login)
+        public User GetUser(string email)
         {
-            return _dbContext.Users.FirstOrDefault(x => x.Login == login);
+            return _dbContext.Users.FirstOrDefault(x => x.Email == email);
+        }
+
+        public void AddUser(User user)
+        {
+            _dbContext.Users.Add(user);
+            _dbContext.SaveChanges(true);
         }
 
         public UserSettings GetUserSettings(Guid userId)
