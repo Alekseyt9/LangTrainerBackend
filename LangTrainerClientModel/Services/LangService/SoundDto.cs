@@ -2,7 +2,7 @@
 
 namespace LangTrainerClientModel.Services
 {
-    public class FindItemSound
+    public class SoundDto
     {
         public string Data { get; set; }
     }

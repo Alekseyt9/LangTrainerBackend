@@ -22,9 +22,10 @@ namespace LangTrainerAPI.Controllers
 
         [HttpGet]
         [Route("GetList")]
-        public ActionResult<IEnumerable<WordListItem>> GetList(GetWordListModel model)
+        public ActionResult<IEnumerable<WordListItem>> GetList([FromQuery] GetWordListModel model)
         {
-            return new ActionResult<IEnumerable<WordListItem>>(_wordListService.GetList(GetCurrentUserId(), model));
+            var res = _wordListService.GetList(GetCurrentUserId(), model);
+            return new ActionResult<IEnumerable<WordListItem>>(res);
         }
 
     }

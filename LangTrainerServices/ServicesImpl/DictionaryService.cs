@@ -52,7 +52,7 @@ namespace LangTrainerServices.ServicesImpl
                 {
                     Expression = expr.Text,
                     Translates = trs,
-                    Sounds = expr.Sounds.Select(x => new FindItemSound()
+                    Sounds = expr.Sounds.Select(x => new SoundDto()
                     {
                         Data = Convert.ToBase64String(x.Data)
                     }).ToList() 

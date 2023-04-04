@@ -18,14 +18,21 @@ namespace LangTrainerServices.ServicesImpl
         public IEnumerable<WordListItem> GetList(Guid userId, GetWordListModel model)
         {
             var group = _repository.GetDefaultTrainingGroup(userId);
-            var list = _repository.GetTranslatesInGroup(group.Id, model.SearchString, 10);
+
+            var ss = model.SearchString == "-" ? null : model.SearchString;
+            var list = _repository.GetTranslatesInGroup(group.Id, ss, 10);
+
             var res =  list.OrderByDescending(x => x.AddTime).Select(x => new WordListItem()
             {
                 Sample = x.Translate.Samples.First().Text,
-                Sounds = x.Translate.Expression.Sounds.ToArray(),
+                Sounds = x.Translate.Expression.Sounds.Select(y => new SoundDto()
+                {
+                    Data = Convert.ToBase64String(y.Data)
+                }).ToArray(),
                 TrainingState = GetTrainingStateStr(x.TrainingInfo),
                 Translate = x.Translate.Text,
-                TranslateId = x.TranslateId
+                TranslateId = x.TranslateId,
+                Word = x.Translate.Expression.Text
             });
             return res;
         }

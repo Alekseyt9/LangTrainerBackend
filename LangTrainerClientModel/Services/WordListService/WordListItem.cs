@@ -12,7 +12,7 @@ namespace LangTrainerClientModel.Services
 
         public string TrainingState { get; set; }
 
-        public Sound[] Sounds { get; set; }
+        public SoundDto[] Sounds { get; set; }
 
         public string Translate { get; set; }
 

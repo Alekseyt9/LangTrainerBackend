@@ -9,7 +9,7 @@ namespace LangTrainerServices.Services
 
         public ICollection<TranslateInfo> Translates { get; set; }
 
-        public ICollection<FindItemSound> Sounds { get; set; }
+        public ICollection<SoundDto> Sounds { get; set; }
 
     }
 }
