@@ -1,14 +1,13 @@
 ﻿
 using System.Reflection;
-using LangTrainerClientModel.Services.DataLoader;
+using LangTrainerClientModel.Services;
 using LangTrainerEntity.Entities;
 using LangTrainerEntity.Helpers;
-using LangTrainerServices.Model.DataFillers;
+using LangTrainerServices.Model;
 using LangTrainerServices.Services;
-using LangTrainerServices.Services.DataLoader;
-using LangTrainerServices.ServicesModel.DataLoader;
+using LangTrainerServices.ServicesModel;
 
-namespace LangTrainerServices.ServicesImpl.DataLoaderService
+namespace LangTrainerServices.ServicesImpl
 {
     internal class DataLoaderService : IDataLoaderService
     {

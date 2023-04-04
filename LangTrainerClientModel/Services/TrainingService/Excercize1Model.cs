@@ -1,4 +1,4 @@
-﻿namespace LangTrainerClientModel.Services.TrainingService
+﻿namespace LangTrainerClientModel.Services
 {
     public class Excercize1Model
     {

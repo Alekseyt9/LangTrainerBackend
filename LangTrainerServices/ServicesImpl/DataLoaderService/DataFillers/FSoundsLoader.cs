@@ -3,10 +3,10 @@ using HtmlAgilityPack;
 using LangTrainerCommon.Helpers;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
-using LangTrainerServices.Model.DataFillers;
-using LangTrainerServices.Services.DataLoader;
+using LangTrainerServices.Model;
+using LangTrainerServices.Services;
 
-namespace LangTrainerServices.ServicesImpl.DataLoaderService.DataFillers
+namespace LangTrainerServices.ServicesImpl
 {
     [DataLoader(@"", new[] { "english", "french", "german", "italian" })]
     internal class FSoundsLoader : IDataLoader

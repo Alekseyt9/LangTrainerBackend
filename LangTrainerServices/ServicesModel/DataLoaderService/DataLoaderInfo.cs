@@ -1,6 +1,6 @@
 ﻿
 
-namespace LangTrainerServices.Services.DataLoader
+namespace LangTrainerServices.Services
 {
     public class DataLoaderInfo
     {

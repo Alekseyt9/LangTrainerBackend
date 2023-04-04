@@ -1,5 +1,5 @@
 ﻿
-namespace LangTrainerServices.Model.DataFillers
+namespace LangTrainerServices.Model
 {
     public class DataLoaderAttribute : Attribute
     {

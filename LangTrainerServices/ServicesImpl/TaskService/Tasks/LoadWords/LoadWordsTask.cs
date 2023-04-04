@@ -1,9 +1,6 @@
 ﻿
-using LangTrainerClientModel.Services;
-using LangTrainerCommon.Helpers;
-using LangTrainerEntity.Entities;
-using LangTrainerServices.Services.Tasks;
-using LangTrainerServices.ServicesModel.DataLoader;
+using LangTrainerServices.Services;
+using LangTrainerServices.ServicesModel;
 
 namespace LangTrainerServices.ServicesImpl.TaskService.Tasks.LoadWords
 {

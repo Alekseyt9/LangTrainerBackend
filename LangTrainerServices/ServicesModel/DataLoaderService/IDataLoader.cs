@@ -1,8 +1,8 @@
 ﻿
 using LangTrainerEntity.Entities;
-using LangTrainerServices.Services.DataLoader;
+using LangTrainerServices.Services;
 
-namespace LangTrainerServices.Model.DataFillers
+namespace LangTrainerServices.Model
 {
     internal interface IDataLoader
     {

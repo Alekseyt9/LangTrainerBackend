@@ -1,6 +1,5 @@
 ﻿
 using LangTrainerClientModel.Services;
-using LangTrainerClientModel.Services.TrainingService;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
 using Microsoft.AspNetCore.Authorization;

@@ -1,7 +1,5 @@
 ﻿
 using LangTrainerClientModel.Services;
-using LangTrainerClientModel.Services.DataLoader;
-using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities;
 
 namespace LangTrainerServices.Services

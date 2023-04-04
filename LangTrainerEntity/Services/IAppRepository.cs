@@ -25,6 +25,8 @@ namespace LangTrainerServices.Services
 
         TranslateInGroup GetTranslateInGroup(Guid groupId, Guid translateId);
 
+        IEnumerable<TranslateInGroup> GetTranslatesInGroup(Guid groupId, string searchStr, int maxCount);
+
         void Save();
 
         PartOfSpeech GetPartOfSpeech(string name, Guid languageId);

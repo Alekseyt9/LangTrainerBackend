@@ -1,8 +1,8 @@
 ﻿
+using LangTrainerClientModel.Services;
 using LangTrainerServices.Services;
 using LangTrainerServices.ServicesModel;
 using Microsoft.AspNetCore.Mvc;
-using LangTrainerClientModel.Services.SettingsService;
 
 namespace LangTrainerAPI.Controllers
 {

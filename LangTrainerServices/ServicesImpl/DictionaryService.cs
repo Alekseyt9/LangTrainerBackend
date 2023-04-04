@@ -1,12 +1,10 @@
 ﻿
 using LangTrainerClientModel.Services;
-using LangTrainerClientModel.Services.DataLoader;
-using LangTrainerClientModel.Services.LangService;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Services;
-using LangTrainerServices.ServicesModel.DataLoader;
+using LangTrainerServices.ServicesModel;
 
-namespace LangTrainerServices.Impl
+namespace LangTrainerServices.ServicesImpl
 {
     internal class DictionaryService : IDictionaryService
     {

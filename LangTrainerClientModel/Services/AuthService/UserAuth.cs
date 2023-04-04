@@ -1,4 +1,6 @@
-﻿namespace LangTrainerClientModel.Services.AuthService
+﻿
+
+namespace LangTrainerClientModel.Services
 {
     public class UserAuth
     {

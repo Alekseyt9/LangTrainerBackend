@@ -1,4 +1,5 @@
-﻿using LangTrainerClientModel.Services.SettingsService;
+﻿
+using LangTrainerClientModel.Services;
 
 namespace LangTrainerServices.ServicesModel
 {

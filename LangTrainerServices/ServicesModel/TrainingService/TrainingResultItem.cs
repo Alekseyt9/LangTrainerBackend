@@ -1,6 +1,6 @@
 ﻿
 
-namespace LangTrainerServices.Services.TrainingService
+namespace LangTrainerServices.Services
 {
     public class TrainingResultItem
     {

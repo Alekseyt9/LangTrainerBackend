@@ -1,4 +1,6 @@
-﻿namespace LangTrainerClientModel.Services.TrainingService
+﻿
+
+namespace LangTrainerClientModel.Services
 {
     public class StartTrainingItem
     {

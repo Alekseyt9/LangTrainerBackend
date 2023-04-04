@@ -89,6 +89,21 @@ namespace LangTrainerDAL.Services
                 .FirstOrDefault(x => x.GroupId == groupId && x.TranslateId == translateId);
         }
 
+        public IEnumerable<TranslateInGroup> GetTranslatesInGroup(Guid groupId, string searchStr, int maxCount)
+        {
+            return _dbContext.TranslateInGroup
+                .Where(x => x.GroupId == groupId
+                            && (string.IsNullOrEmpty(searchStr)
+                                || !string.IsNullOrEmpty(searchStr)
+                                && EF.Functions.Like(x.Translate.Expression.Text, $"%{searchStr}%")))
+                .Include(x => x.Translate)
+                .ThenInclude(x => x.Expression).ThenInclude(x => x.Sounds)
+                .Include(x => x.Translate)
+                .ThenInclude(x => x.Samples)
+                .Take(maxCount)
+                .ToList();
+        }
+
         public void Save()
         {
             _dbContext.SaveChanges();

@@ -2,7 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using LangTrainerClientModel.Services.AuthService;
+using LangTrainerClientModel.Services;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Services;
 using Microsoft.Extensions.Configuration;

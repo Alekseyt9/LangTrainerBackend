@@ -1,14 +1,12 @@
 ﻿
+using LangTrainerClientModel.Services;
 
-namespace LangTrainerServices.ServicesModel.WordList
+namespace LangTrainerServices.ServicesModel
 {
-    internal interface IWordListService
+    public interface IWordListService
     {
-        /*
-        GetList()
-        {
-        }
-        */
+        IEnumerable<WordListItem> GetList(Guid userId, GetWordListModel model);
+
     }
 
 }

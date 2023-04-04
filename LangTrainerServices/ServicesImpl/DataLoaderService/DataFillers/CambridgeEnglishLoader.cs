@@ -3,10 +3,10 @@ using System.Text;
 using HtmlAgilityPack;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
-using LangTrainerServices.Model.DataFillers;
-using LangTrainerServices.Services.DataLoader;
+using LangTrainerServices.Model;
+using LangTrainerServices.Services;
 
-namespace LangTrainerServices.ServicesImpl.DataLoaderService.DataFillers
+namespace LangTrainerServices.ServicesImpl
 {
     [DataLoader("dictionary.cambridge.org_eng", "english")]
     internal class CambridgeEnglishLoader : IDataLoader

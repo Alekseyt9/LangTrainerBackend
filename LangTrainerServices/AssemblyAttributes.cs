@@ -1,6 +1,6 @@
 ﻿
-using LangTrainerServices.Services.DataLoader;
 using System.Runtime.CompilerServices;
+using LangTrainerServices.Services;
 
 [assembly: InternalsVisibleTo("LangTrainerTest")]
 [assembly: DataLoaderAssembly]

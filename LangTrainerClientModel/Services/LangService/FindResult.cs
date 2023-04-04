@@ -8,7 +8,5 @@ namespace LangTrainerServices.Services
 
         public ICollection<FindItem> Items { get; set; } = new List<FindItem>();
 
-
-
     }
 }

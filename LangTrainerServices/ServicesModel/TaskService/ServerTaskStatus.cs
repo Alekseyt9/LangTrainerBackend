@@ -1,6 +1,6 @@
 ﻿
 
-namespace LangTrainerServices.Services.Tasks
+namespace LangTrainerServices.Services
 {
     public enum ServerTaskStatus
     {
