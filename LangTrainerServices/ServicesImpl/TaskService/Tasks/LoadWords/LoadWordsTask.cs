@@ -2,10 +2,10 @@
 using LangTrainerClientModel.Services;
 using LangTrainerCommon.Helpers;
 using LangTrainerEntity.Entities;
-using LangTrainerServices.Services;
 using LangTrainerServices.Services.Tasks;
+using LangTrainerServices.ServicesModel.DataLoader;
 
-namespace LangTrainerServices.Impl.Tasks.LoadWords
+namespace LangTrainerServices.ServicesImpl.TaskService.Tasks.LoadWords
 {
     [ServerTask]
     internal class LoadWordsTask : IServerTask<LoadWordsTaskParams>
@@ -14,7 +14,7 @@ namespace LangTrainerServices.Impl.Tasks.LoadWords
 
         public LoadWordsTask(IDataLoaderService dataLoaderService)
         {
-            _dataLoaderService = dataLoaderService ?? 
+            _dataLoaderService = dataLoaderService ??
                                  throw new ArgumentNullException(nameof(dataLoaderService));
         }
 

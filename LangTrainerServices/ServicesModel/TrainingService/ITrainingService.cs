@@ -1,5 +1,4 @@
-﻿
-using LangTrainerClientModel.Model.Training;
+﻿using LangTrainerClientModel.Services.TrainingService;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Services.TrainingService;
 

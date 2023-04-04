@@ -1,5 +1,4 @@
-﻿
-using LangTrainerClientModel.Model.User;
+﻿using LangTrainerClientModel.Services.AuthService;
 
 namespace LangTrainerServices.Services
 {

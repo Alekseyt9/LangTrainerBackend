@@ -6,9 +6,9 @@ using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
 using LangTrainerServices.Services.DataLoader;
 
-namespace LangTrainerServices.Impl.DataFillers
+namespace LangTrainerServices.ServicesImpl.DataLoaderService.DataFillers
 {
-    [DataLoader(@"", new []{ "english", "french", "german", "italian" })]
+    [DataLoader(@"", new[] { "english", "french", "german", "italian" })]
     internal class FSoundsLoader : IDataLoader
     {
         public async Task<Expression> GetData(DataLoaderContext ctx, DataLoaderParams pars)

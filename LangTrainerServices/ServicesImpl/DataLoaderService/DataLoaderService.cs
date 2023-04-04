@@ -1,13 +1,14 @@
 ﻿
 using System.Reflection;
-using LangTrainerClientModel.Services;
+using LangTrainerClientModel.Services.DataLoader;
 using LangTrainerEntity.Entities;
 using LangTrainerEntity.Helpers;
 using LangTrainerServices.Model.DataFillers;
 using LangTrainerServices.Services;
 using LangTrainerServices.Services.DataLoader;
+using LangTrainerServices.ServicesModel.DataLoader;
 
-namespace LangTrainerServices.Impl
+namespace LangTrainerServices.ServicesImpl.DataLoaderService
 {
     internal class DataLoaderService : IDataLoaderService
     {
@@ -29,7 +30,7 @@ namespace LangTrainerServices.Impl
         {
             var asms = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var type in asms
-                         .Where(x => x.GetCustomAttributes(typeof(DataLoaderAssemblyAttribute)).Any() )
+                         .Where(x => x.GetCustomAttributes(typeof(DataLoaderAssemblyAttribute)).Any())
                          .SelectMany(x => x.GetTypes()))
             {
                 if (typeof(IDataLoader).IsAssignableFrom(type))

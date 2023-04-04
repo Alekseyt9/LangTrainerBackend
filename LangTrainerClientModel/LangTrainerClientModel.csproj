@@ -10,4 +10,8 @@
     <ProjectReference Include="..\LangTrainerEntity\LangTrainerModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\WordListService\" />
+  </ItemGroup>
+
 </Project>

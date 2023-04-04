@@ -2,12 +2,11 @@
 using LangTrainerServices.Services;
 using LangTrainerServices.ServicesModel;
 using Microsoft.AspNetCore.Mvc;
-using LangTrainerClientModel.Model;
-using LangTrainerClientModel.Model.Settings;
+using LangTrainerClientModel.Services.SettingsService;
 
 namespace LangTrainerAPI.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class SettingsController : BaseController

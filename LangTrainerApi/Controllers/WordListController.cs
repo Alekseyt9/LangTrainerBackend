@@ -13,5 +13,12 @@ namespace LangTrainerAPI.Controllers
         public WordListController(IAppRepository repository) : base(repository)
         {
         }
+
+        public void GetList()
+        {
+
+        }
+
+
     }
 }

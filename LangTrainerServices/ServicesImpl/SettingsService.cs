@@ -1,5 +1,4 @@
-﻿
-using LangTrainerClientModel.Model;
+﻿using LangTrainerClientModel.Services.SettingsService;
 using LangTrainerServices.Services;
 using LangTrainerServices.ServicesModel;
 using Newtonsoft.Json;

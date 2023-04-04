@@ -1,5 +1,4 @@
-﻿
-using LangTrainerClientModel.Model.User;
+﻿using LangTrainerClientModel.Services.AuthService;
 using LangTrainerEntity.Entities;
 using LangTrainerServices.Helpers;
 using LangTrainerServices.Services;

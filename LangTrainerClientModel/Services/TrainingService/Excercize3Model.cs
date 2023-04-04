@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LangTrainerClientModel.Model.Training
+namespace LangTrainerClientModel.Services.TrainingService
 {
     public class Excercize3Model
     {

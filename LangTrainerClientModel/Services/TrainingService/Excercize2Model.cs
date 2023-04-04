@@ -1,6 +1,6 @@
-﻿namespace LangTrainerClientModel.Model.Training
+﻿namespace LangTrainerClientModel.Services.TrainingService
 {
-    public class Excercize1Model
+    public class Excercize2Model
     {
         public string Question { get; set; }
 

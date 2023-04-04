@@ -1,5 +1,4 @@
-﻿
-namespace LangTrainerClientModel.Services
+﻿namespace LangTrainerClientModel.Services.DataLoader
 {
     public class WordInfo
     {

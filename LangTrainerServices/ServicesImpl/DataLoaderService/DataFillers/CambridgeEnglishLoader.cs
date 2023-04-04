@@ -6,7 +6,7 @@ using LangTrainerServices.Helpers;
 using LangTrainerServices.Model.DataFillers;
 using LangTrainerServices.Services.DataLoader;
 
-namespace LangTrainerServices.Impl.DataFillers
+namespace LangTrainerServices.ServicesImpl.DataLoaderService.DataFillers
 {
     [DataLoader("dictionary.cambridge.org_eng", "english")]
     internal class CambridgeEnglishLoader : IDataLoader

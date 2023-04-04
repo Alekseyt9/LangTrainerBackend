@@ -1,6 +1,4 @@
-﻿
-
-namespace LangTrainerServices.Impl.Tasks.LoadWords
+﻿namespace LangTrainerServices.ServicesImpl.TaskService.Tasks.LoadWords
 {
     public class LoadWordsTaskParams
     {

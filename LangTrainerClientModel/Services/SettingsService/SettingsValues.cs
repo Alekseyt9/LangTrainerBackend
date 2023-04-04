@@ -1,7 +1,4 @@
-﻿
-using LangTrainerClientModel.Model.Settings;
-
-namespace LangTrainerClientModel.Model
+﻿namespace LangTrainerClientModel.Services.SettingsService
 {
     public class SettingsValues
     {

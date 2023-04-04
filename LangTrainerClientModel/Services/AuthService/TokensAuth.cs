@@ -1,6 +1,4 @@
-﻿
-
-namespace LangTrainerClientModel.Model.User
+﻿namespace LangTrainerClientModel.Services.AuthService
 {
     public class TokensAuth
     {
